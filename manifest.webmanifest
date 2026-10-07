@@ -1,0 +1,21 @@
+{
+ "name": "Beijing 2026",
+ "short_name": "Beijing 2026",
+ "start_url": "./beijing-oct-2026.html",
+ "scope": "./",
+ "display": "standalone",
+ "background_color": "#ffffff",
+ "theme_color": "#C92A2A",
+ "icons": [
+  {
+   "src": "icon-192.png",
+   "sizes": "192x192",
+   "type": "image/png"
+  },
+  {
+   "src": "icon-512.png",
+   "sizes": "512x512",
+   "type": "image/png"
+  }
+ ]
+}
