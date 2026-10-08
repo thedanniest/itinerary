@@ -35,16 +35,29 @@ ol>li.past{opacity:.5}ol>li.now{background:#fff;border-radius:12px;box-shadow:0 
 @media (prefers-reduced-motion:reduce){.dot.pulse{animation:none}}
 .cd.soon{color:var(--c);font-weight:800}
 [hidden]{display:none!important}
-.tabs{display:flex;gap:6px;background:#f1f1f1;border-radius:14px;padding:4px;margin-bottom:8px}
-.tabs button{flex:1;min-height:44px;border:0;border-radius:11px;background:transparent;font:inherit;font-weight:700;color:#555}
-.tabs button.on{background:#fff;color:#111;box-shadow:0 1px 4px #0002}
-#fam{display:none}body.map #fam{display:block}body.map #chips,body.map .bar,body.map main{display:none}
-.fam{padding:14px;max-width:640px;margin:auto}.pad{padding:16px}
-.mapbox{height:52vh;min-height:280px;border-radius:16px;overflow:hidden;box-shadow:0 6px 20px #0000001a;margin-bottom:12px;background:#eef0f2}
-.amber{background:#FFF3BF;color:#5c3c00;border-radius:12px;padding:12px 14px;font-weight:700;margin-bottom:12px}
-.bad{background:#FFE3E3;color:#7a1414;border-radius:12px;padding:12px 14px;font-weight:700;margin-bottom:12px}
+.fab{position:fixed;left:auto;right:16px;bottom:calc(24px + env(safe-area-inset-bottom));z-index:900;width:56px;height:56px;border-radius:50%;border:0;padding:0;background:#222;color:#fff;box-shadow:0 6px 16px #0000003d,0 2px 5px #00000026;display:flex;align-items:center;justify-content:center;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent;cursor:pointer}
+.fab.snap{transition:left .2s ease-out,top .2s ease-out}.fab svg{width:28px;height:28px;pointer-events:none}
+.fab .on{position:absolute;top:5px;right:5px;width:14px;height:14px;border-radius:50%;background:#2FB344;border:2px solid #222}
+body.map .fab{display:none!important}body.map{overflow:hidden}
+#fam{display:none}body.map #fam{display:flex}
+.fam{position:fixed;inset:0;z-index:1500;background:#fff;flex-direction:column}.pad{padding:16px}
+.mtop{flex:0 0 auto;display:flex;align-items:center;gap:12px;padding:calc(8px + env(safe-area-inset-top)) 12px 8px;background:#fff;box-shadow:0 2px 10px #00000014;position:relative;z-index:3}
+.pill{min-height:44px;padding:0 16px;border-radius:22px;border:1px solid #ddd;background:#fff;font:inherit;font-weight:700;font-size:15px;color:#111;box-shadow:0 1px 3px #0001;cursor:pointer}
+.mtop h1{margin:0;font-size:19px;font-weight:800;color:#111}
+.mbody{flex:1;min-height:0;display:flex;flex-direction:column;overflow:auto}.mbody>.card{margin:14px}
+#famMain:not([hidden]){flex:1;min-height:0;display:flex;flex-direction:column}
+.mapbox{flex:1;min-height:200px;background:#eef0f2}
+.panel{flex:0 0 auto;background:#fff;padding:12px 14px calc(10px + env(safe-area-inset-bottom));box-shadow:0 -4px 14px #0000001a;position:relative;z-index:2;max-height:60vh;overflow:auto}
+.amber{background:#FFF3BF;color:#5c3c00;border-radius:12px;padding:12px 14px;font-weight:700;margin:10px 12px 0}
+.bad{background:#FFE3E3;color:#7a1414;border-radius:12px;padding:12px 14px;font-weight:700;margin:10px 12px 0}
+.namerow{display:flex;gap:10px;align-items:center;margin-bottom:12px}.fam .namerow input{flex:1;min-width:0;margin:0}
+.colbtn{flex:0 0 auto;width:44px;height:44px;border-radius:50%;border:0;padding:0;color:#fff;font:800 15px -apple-system,system-ui,sans-serif;box-shadow:0 0 0 2px #fff,0 0 0 3px #ccc;cursor:pointer}
+.swg{display:grid;grid-template-columns:repeat(5,44px);gap:12px 14px;padding:4px 2px 14px}
+.swb{width:44px;height:44px;border-radius:50%;border:0;padding:0;color:#fff;font:800 14px -apple-system,system-ui,sans-serif;cursor:pointer}.swb.on{box-shadow:0 0 0 3px #fff,0 0 0 5px #222}
+.sbar{display:flex;align-items:center;gap:12px;margin-bottom:4px}.sas{flex:1;min-width:0;font-size:16px;color:#333;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.sas b{color:#111}
+.stopsm{flex:0 0 auto;min-height:44px;padding:0 16px;border:0;border-radius:12px;background:#C92A2A;color:#fff;font:inherit;font-size:16px;font-weight:800;cursor:pointer}
 .lab{display:block;font-weight:800;font-size:17px;margin-bottom:8px;color:#111}
-.fam input{width:100%;min-height:54px;font:inherit;font-size:20px;border:1px solid #ccc;border-radius:12px;padding:0 14px;margin-bottom:12px;background:#fff;color:#111}
+.fam input{width:100%;min-height:50px;font:inherit;font-size:20px;border:1px solid #ccc;border-radius:12px;padding:0 14px;margin-bottom:12px;background:#fff;color:#111}
 #codeIn{font-size:28px;letter-spacing:.06em;text-align:center;font-variant-numeric:tabular-nums}
 .big{display:block;width:100%;min-height:58px;border:0;border-radius:14px;font:inherit;font-size:19px;font-weight:800;background:#222;color:#fff}
 .big.share{background:#2B8A3E}.big.stop{background:#C92A2A}
@@ -52,11 +65,11 @@ ol>li.past{opacity:.5}ol>li.now{background:#fff;border-radius:12px;box-shadow:0 
 .linkbtn{background:none;border:0;padding:0;min-height:44px;font:inherit;font-size:14px;color:#666;text-decoration:underline}
 .leaflet-tooltip.nm{font:700 13px -apple-system,system-ui,sans-serif;padding:2px 6px;border-radius:8px}.leaflet-tooltip.nm.old{opacity:.55!important}
 
-.pchips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:2px 2px 10px}.pchips::-webkit-scrollbar{display:none}
+.pchips{flex:0 0 auto;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:8px 10px}.pchips::-webkit-scrollbar{display:none}
 .pchip{flex:0 0 auto;display:flex;align-items:center;gap:8px;min-height:46px;padding:0 14px 0 6px;border-radius:23px;border:1px solid #ddd;background:#fff;font:inherit;font-weight:700;font-size:15px;color:#111;box-shadow:0 1px 3px #0001}
-.pchip.old{opacity:.5}
+.pchip.old{color:#444}.pchip span small{display:block;font-size:12px;font-weight:600;color:#666;line-height:1.1}
 .tg{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;color:#fff;font-style:normal;font-weight:800;font-size:13px;flex:0 0 auto}.tg.big{width:46px;height:46px;font-size:17px}
-.fd{width:38px;height:38px;border-radius:50%;border:3px solid #fff;box-shadow:0 2px 6px #0005;color:#fff;font:800 13px/32px -apple-system,system-ui,sans-serif;text-align:center}.fd.old{opacity:.45}
+.fd{width:38px;height:38px;border-radius:50%;border:3px solid #fff;box-shadow:0 2px 6px #0005;color:#fff;font:800 13px/32px -apple-system,system-ui,sans-serif;text-align:center}.fd.old{opacity:.7;border:0;box-shadow:none;line-height:38px}
 .fc{width:44px;height:44px;border-radius:50%;background:#222;color:#fff;border:3px solid #fff;box-shadow:0 2px 8px #0005;font:800 16px/38px -apple-system,system-ui,sans-serif;text-align:center}
 .mebtn{width:48px;height:48px;border-radius:50%;border:0;background:#fff;box-shadow:0 2px 8px #0004;font:800 15px -apple-system,system-ui,sans-serif;color:#111;cursor:pointer}
 .sheetbg{position:fixed;inset:0;background:#0005;z-index:2000}
@@ -67,13 +80,16 @@ ol>li.past{opacity:.5}ol>li.now{background:#fff;border-radius:12px;box-shadow:0 
 .big.walk{display:flex;align-items:center;justify-content:center;text-decoration:none;background:#222}
 footer{font-size:12px;color:#666;text-align:center;padding:6px 0 30px}
 </style></head><body>
-<div class="top"><div class="tabs" id="tabs" hidden role="tablist"><button data-tab="itin" class="on">Itinerary</button><button data-tab="map">Family map</button></div><nav class="chips" id="chips"></nav>
+<div class="top"><nav class="chips" id="chips"></nav>
 <div class="bar"><button id="bToday">Today</button><button id="bNext">Next stop</button></div></div>
 <main><h1 class="ttl">Beijing · 9–17 Oct 2026</h1><div class="live" id="live"></div><section class="card next" id="next"></section><div id="days"></div><div id="banner"></div><footer id="upd"></footer></main>
-<section id="fam" class="fam">
- <h1 class="ttl">Family map</h1><div class="live">See where everyone is, so you can meet up.</div>
+<button id="fab" class="fab" type="button" hidden aria-label="Family map"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.6A2.6 2.6 0 1 1 12 6.4a2.6 2.6 0 0 1 0 5.2z"/></svg><i id="fabOn" class="on" hidden></i></button>
+<div id="safeProbe" aria-hidden="true" style="position:fixed;left:0;top:0;width:0;height:0;visibility:hidden;pointer-events:none;padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)"></div>
+<section id="fam" class="fam" aria-label="Family map">
+ <div class="mtop"><button id="backBtn" class="pill" type="button">← Itinerary</button><h1>Family map</h1></div>
  <div id="famAmber" class="amber" hidden>Can't reach the family map. Turn off Wi‑Fi to use roaming.</div>
  <div id="famBad" class="bad" hidden role="alert">Code not recognised</div>
+ <div class="mbody">
  <div id="famCode" class="card pad" hidden>
   <label for="codeIn" class="lab">Enter family code</label>
   <input id="codeIn" inputmode="numeric" autocomplete="off" placeholder="123 456 7890" maxlength="12" aria-describedby="codeHelp">
@@ -81,17 +97,20 @@ footer{font-size:12px;color:#666;text-align:center;padding:6px 0 30px}
   <p id="codeHelp" class="note">It's the 10-digit number Dan sent in the family chat.</p>
  </div>
  <div id="famMain" hidden>
-  <div id="pchips" class="pchips" aria-label="People sharing"></div>
+  <div id="pchips" class="pchips" aria-label="People on the map"></div>
   <div id="fmap" class="mapbox" role="img" aria-label="Map of family members"></div>
-  <div class="card pad">
-   <label for="nameIn" class="lab">Your name</label>
-   <input id="nameIn" maxlength="20" autocomplete="nickname" placeholder="e.g. Mom">
-   <button id="shareBtn" class="big share">Share my location</button>
-   <button id="stopBtn" class="big stop" hidden>Stop sharing</button>
+  <div class="panel">
+   <div id="setup"><label for="nameIn" class="lab">Your name</label>
+    <div class="namerow"><input id="nameIn" maxlength="20" autocomplete="nickname" placeholder="e.g. Mom"><button id="colBtn" class="colbtn" type="button" aria-label="Choose your colour" aria-expanded="false"></button></div></div>
+   <div id="sbar" class="sbar" hidden><button id="colBtn2" class="colbtn" type="button" aria-label="Change your colour" aria-expanded="false"></button><div class="sas">Sharing as <b id="sasName"></b></div><button id="stopBtn" class="stopsm" type="button">Stop sharing</button></div>
+   <div id="swatches" class="swg" hidden role="group" aria-label="Colours"></div>
+   <div id="shareWrap"><button id="shareBtn" class="big share">Share my location</button>
+    <p class="note">Only shares while this page is open and you've tapped Share. Your last spot stays on the map, greyed, for up to 1 hour.</p></div>
+   <button id="clearBtn" class="linkbtn" type="button" hidden>Remove my last spot now</button>
    <button id="forgetBtn" class="linkbtn">Forget this phone</button>
-   <p class="note">Only shares while this page is open and you've tapped Share.</p>
    <p id="famMsg" class="note" aria-live="polite"></p>
   </div>
+ </div>
  </div>
 </section>
 <div id="sheetBg" class="sheetbg" hidden></div><div id="sheet" class="sheet" hidden role="dialog" aria-modal="true" aria-label="Person"><div class="grab"></div><div id="sheetBody"></div></div>
@@ -101,11 +120,11 @@ footer{font-size:12px;color:#666;text-align:center;padding:6px 0 30px}
 const LS={get:k=>{try{return localStorage.getItem(k)}catch(_){return null}},set:(k,v)=>{try{localStorage.setItem(k,v)}catch(_){}},del:k=>{try{localStorage.removeItem(k)}catch(_){}}};
 function takeK(){const m=location.hash.match(/^#(?:.*&)?k=(\d{10})(?:&|$)/);if(!m)return false;LS.set('fam-k',m[1]);history.replaceState(null,'',location.pathname+location.search);return true}
 takeK();
-addEventListener('hashchange',()=>{if(takeK()&&window.refreshTabs){fam.denied=false;refreshTabs();checkCode(LS.get('fam-k'));if(document.body.classList.contains('map'))famStart()}}); // link tapped while the page is already open
+addEventListener('hashchange',()=>{if(takeK()&&window.refreshTabs){fam.denied=false;refreshTabs();checkCode(LS.get('fam-k'));if(isMap())famStart()}}); // link tapped while the page is already open
 // Either a published-to-web CSV of the `app` tab (cols A–N as tab 1) or a gviz feed .../gviz/tq?tqx=out:csv (cols B–L then N). Placeholder for now.
 // Filtered `app` tab: cols B–L then N, row 1 = sheet row 1 (no costs, no roster).
 const CSV_URL='https://docs.google.com/spreadsheets/d/e/2PACX-1vTHd0Mn077tcoHy_0liGlBuQvbrSjAmjwo7Bp9TBeZU2B5vH_rDkGsnByTtZXzJA77i6aaoldDZeHir/pub?gid=1795464233&single=true&output=csv';
-const BAKED=[["", "", "", "", "", "", "", "", "", "", "", ""], ["Day", "Date", "Day", "Key", "Detail", "Hotel", "Need to book", "Lunch", "Snack", "Dinner", "Bus?", "Name for Map"], ["1", "9-Oct", "Fri", "BKK→Beijing · TG614 dep ~10:00", "TG 614 Arriving Beijing 3:45PM", "Renaissance Wangfujing", "", "", "", "Long time ago", "Yes (33 seater)", ""], ["", "", "", "15:45 PM", "Land PEK (TG614)", "", "", "", "", "", "", "PEK T3: 北京首都国际机场T3航站楼"], ["", "", "", "17:00 PM", "Out of airport  (33-seater, ~60 min)", "", "", "", "", "", "", "Renaissance hotel: 北京王府井万丽酒店"], ["", "", "", "18:00 PM", "Arrive Hotel > Check in @ Renaissance Wangfujing", "", "Reserve Long time ago Wangfujing APM", "", "", "", "", ""], ["", "", "", "19:00 PM", "Meet at the hotel lobby for dinner", "", "", "", "", "", "", ""], ["", "", "", "19:15 PM", "Dinner — Long time ago (15 mins walk). Book on the bus when arriving hotel.", "", "", "", "", "Long time ago", "", ""], ["", "", "", "", "", "", "", "", "", "", "", ""], ["2", "10-Oct", "Sat", "Mutianyu", " Chairlift↑ > Tower 6 · walk to ~10–11 · Toboggan↓  · Wangfujing walk", "Renaissance Wangfujing ✅", "Mutianyu + Chair lift ✅", "Mutianyu Valley", "", "Quanjude", "Yes (21 Seater)", ""], ["", "", "", "6:30 AM", "Lobby — Get on the bus", "", "", "", "", "", "", ""], ["", "", "", "8:00 AM", "Arrive Mutianyu", "", "", "", "", "", "", ""], ["", "", "", "8:45 AM", "Chairlift → Tower 6", "", "", "", "", "", "", ""], ["", "", "", "9:00 AM", "Mutianyu Wall walk Tower 6 → ~10–11 → back to Tower 6 (~2 hrs with kids)", "", "", "", "", "", "", ""], ["", "", "", "11:00 AM", "Toboggan down (kids<10 w/ adult)", "", "", "", "", "", "", ""], ["", "", "", "11:30 AM", "Lunch · Mutian Valley or Burger King on the bus", "", "", "", "", "", "", ""], ["", "", "", "13:00 PM", "Depart Mutianyu", "", "", "", "", "", "", ""], ["", "", "", "14:30 PM", "Stop by National Stadium for quick picture (Optional)", "", "", "", "", "", "", ""], ["", "", "", "15:00 PM", "Depart for Renaissance Wangfujing", "", "", "", "", "", "", ""], ["", "", "", "15:30 PM", "Wangfujing walk: in88 LEGO → APM POP MART → Hamleys", "", "", "", "", "", "", ""], ["", "", "", "18:30 PM", "Quanjude Wangfujing dinner (book)", "", "", "", "", "Quanjude", "", ""], ["", "", "", "", "", "", "", "", "", "", "", ""], ["3", "11-Oct", "Sun", "USB", "Full Day USB", "Renaissance Wangfujing ✅", "USB ✅", "USB", "USB", "CityWalk (TBD)", "Yes (21 Seater)", ""], ["", "", "", "8:00 AM", "Lobby — Get on the bus", "", "", "", "", "", "", ""], ["", "", "", "9:00 AM", "Arrive Universal Studio Beijing", "", "", "", "", "", "", ""], ["", "", "", "", "Harry Potter : Forbidden Journey (+ Flight of the Hippogriff)", "", "", "Three Broomsticks", "", "", "", ""], ["", "", "", "", "Kung Fu Panda Land : Journey of the Dragon Warrior", "", "", "Grandma Panda’s Kitchen", "", "", "", ""], ["", "", "", "", "Transformers Metrobase — Transformers: The Ride", "", "", "", "", "", "", ""], ["", "", "", "", "Jurassic World Isla Nublar — Jurassic World Adventure", "", "", "", "", "USB Citywalk", "", ""], ["", "", "", "", "Minion Land — Despicable Me Minion Mayhem", "", "", "", "", "Grandma's Home or Yueweifang", "", ""], ["", "", "", "", "Hollywood → CityWalk ", "", "", "", "", "Wangfujing", "", ""], ["", "", "", "18:00 PM", " ", "", "", "", "", "Hotpot : Nanmen Meat in Hot Pot", "", ""], ["", "", "", "", "", "", "", "", "", "", "", ""], ["4", "12-Oct", "Mon", "Summer Palace & POPLAND", "Summer Palace → 798 brief walk  →  POPLAND ~2h", "Renaissance Wangfujing ✅", "Summer Palace Basic Gate tickets", "798 Art", " POPLAND", "Fei Da Chu", "Yes (21 Seater)", ""], ["", "", "", "7:30 AM", "Meet at hotel lobby; bus to Summer Palace East Gate", "", "", "", "", "", "", ""], ["", "", "", "8:30 AM", "Summer Palace (Basic Ticket) - North Palace Gate > Suzhou Street > Longevity Hill ", "", "", "", "", "", "", ""], ["", "", "", "", "> Tower of Buddhist Incese > Long Corridor Lake View > Strolling in a Picture", "", "", "", "", "", "", ""], ["", "", "", "11:00 AM", "Walking back to bus", "", "", "", "", "", "", ""], ["", "", "", "11:30 AM", "Depart by bus → 798 Art District", "", "", "798 Art (PITAPITA?)", "", "", "", ""], ["", "", "", "12:15 PM", "798 Art District: Lunch & brief walk; main street / Bauhaus / outdoor sculptures. ", "", "", "", "", "", "", ""], ["", "", "", "15:00 PM", "Depart by bus → POPLAND", "", "", "", "", "", "", ""], ["", "", "", "15:30 PM", "POPLAND ~2h: walk / photos / shopping (sightseeing ticket; light rides optional)", "", "", "", "", "", "", ""], ["", "", "", "18:00 PM", "Comeback to Wangfujing", "", "", "", "", "Fei Da Chu", "", ""], ["", "", "", "", "", "", "", "", "", "", "", ""], ["5", "13-Oct", "Tue", "Forbidden City", "Temple of Heaven - Forbidden City - Tian An Men", "Renaissance Wangfujing ✅", "Forbidden City (Tour), Tiananmen, Temple of Heaven  ✅", "Quick Roast Duck", "", "@ Qianmen", "", ""], ["", "", "", "8:00 AM", "Meet lobby → 08:15 Temple of Heaven East Gate", "", "", "", "", "", "", ""], ["", "", "", "8:30 AM", "Temple of Heaven: Hall of Prayer → Danbi Bridge → Echo Wall / Imperial Vault → Circular Mound; through-ticket 联票 ¥34 (not park-only); skip Hall of Abstinence if tight", "", "", "", "", "", "", ""], ["", "", "", "11:00 AM", "Move to Lunch 庆丰1948·烤鸭·新京菜(故宫店) or 全福德烤鸭店(故宫店)", "", "", "เป็ดย่าง 庆丰1948·烤鸭·新京菜(故宫店)", "", "", "", ""], ["", "", "", "12:30 PM", "Walk to Meridian Gate", "", "", "全福德烤鸭店(故宫店) ", "", "", "", ""], ["", "", "", "13:00 PM", "Forbidden City private tour (booked); exit Shenwumen / North Gate", "", "", "Siji Minfu Roast Duck", "", "Tai er (太二)", "", ""], ["", "", "", "17:00 PM", "DiDi to Tiananmen East security 天安门东侧; (backup Qianmen East 前门东)", "", "", "", "", "Beijing pie", "", ""], ["", "", "", "18:00 PM", "Exit 正阳门 (Qianmen / Zhengyangmen) to have Dinner @ Qianmen", "", "", "", "", "Chaishi Fuhai Muslim Cai Roast Duck Shop", "", ""], ["", "", "", "", "", "", "", "", "", "", "", ""], ["6", "14-Oct", "Wed", "Zoo + Aquarium [Nicha PEK 11:00]", "Beijing Zoo - Panda - Nicha bus 11:00 - Aquarium - Drum & Bell Tower", "COFFIZZ Hotel ✅", "Beijing Zoo (zoo+panda 联票 all); Aquarium", "Zoo", "Aquarium", "Wangfujing", "Yes (33 seater)", ""], ["", "", "", "8:00 AM", "Meet Renaissance lobby; checkout bags → Zoo south gate", "", "", "", "", "", "", ""], ["", "", "", "8:30 AM", "Enter Zoo south gate (zoo+panda 联票 19 QR + passport)", "", "", "", "", "", "", ""], ["", "", "", "8:45 AM", "Giant Panda House", "", "", "", "", "", "", ""], ["", "", "", "11:00 AM", "Nicha family board 33-seater → PEK T3  /  Remaining group have lunch", "", "", "", "", "", "", ""], ["", "", "", "12:30 PM", "Beijing Aquarium (~15–25 min walk inside zoo)", "", "", "", "", "", "", ""], ["", "", "", "14:30 PM", "Done Aquarium; meet bus pickup point (North Exit)  → Hutong Drum & Bell Tower", "", "", "", "", "", "", ""], ["", "", "", "15:00 PM", "Hutong Drum & Bell Tower - Yandaixie St. - free time", "", "", "", "", "", "", ""], ["", "", "", "16:00 PM", "Done Hutong  → COFFIZZ", "", "", "", "", "Noodle : Fangzhuanchang No.69 Noodles", "", ""], ["", "", "", "16:45 PM", "Check-in COFFIZZ", "", "", "", "", "Hotpot : Jingzhoushuan", "", ""], ["", "", "", "17:30 PM", "Walk around - Dinner", "", "", "", "", "Fish : Kaojiang Spicy-hot Roasted Fish", "", ""], ["", "", "", "", "", "", "", "", "", "", "", ""], ["7", "15-Oct", "Thu", "Lama - Sanlitun - National Stadium", "Lama Temple - Sanlitun Shopping - National Stadium (night)", "COFFIZZ Hotel ✅", "", "Sanlitun", "B&C", "Sanlitun", "", ""], ["", "", "", "9:00 AM", "Lama Temple (Yonghegong) - ~60-90 min; modest dress / quiet", "", "", "", "", "", "", ""], ["", "", "", "10:30 AM", "DiDi -> Beijing Friendship Garden 北京友谊花园 (Carbo & Metal Hands)", "", "", "", "Metal Hands", "", "", ""], ["", "", "", "12:00 PM", "DiDi -> Sanlitun", "", "", "Carbo", "", "", "", ""], ["", "", "", "12:15 AM", "Sanlitun Taikoo Li shopping / chill  - Snack ", "", "", "", "BUTTERFUL & CREAMOROUS", "", "", ""], ["", "", "", "", "Raffles City - Dinner", "", "", "", "Tea: Longyan Chapu", "", "", ""], ["", "", "", "19:00 PM", "DiDi -> National Stadium (Bird's Nest) ", "", "", "", "Amo Shouzuo", "Brownstone", "", ""], ["", "", "", "19:30 PM", "National Stadium (Night photography) - Dinner near by", "", "", "", "", "Longrenju boiled fish", "", ""], ["", "", "", "20:00 PM", "Go back to Wangfujing / COFFIZZ", "", "", "", "", "Xiaoxiang Pavilion", "", ""], ["", "", "", "", "", "", "", "", "", "", "", ""], ["8", "16-Oct", "Fri", "Mall Cruise & CCTV", "Langyuan Station → Yintai Centre in01 → China World Mall → CCTV → The Place", "COFFIZZ Hotel ✅", "", "Gui Guishan (Buffet)", "", "", "", ""], ["", "", "", "9:00 AM", "COFFIZZ lobby → DiDi to Langyuan", "", "", "", "", "", "", ""], ["", "", "", "9:30 AM", "Langyuan Station cruise — cafés / photo / chill", "", "", "", "", "", "", ""], ["", "", "", "10:45 AM", "DiDi -> Gui Guishan 贵贵山•云贵自助烤肉(合生汇店)", "", "", "Gui Guishan", "", "", "", ""], ["", "", "", "12:00 AM", "DiDi -> Yintai Centre in01 or China World Mall ", "", "", "", "", "", "", ""], ["", "", "", "14:00 AM", "China World Mall", "", "", "", "", "", "", ""], ["", "", "", "15:00 PM", "CCTV,  exterior photos (Big Pants; exterior only)", "", "", "", "", "", "", ""], ["", "", "", "16:00 PM", "The Place mall (LED sky screen) - If not interesting go to Galaxy SOHO", "", "", "", "", "", "", ""], ["", "", "", "18:00 PM", "Dinner nearby / back toward Wangfujing", "", "", "", "", "TBD", "", ""], ["", "", "", "", "", "", "", "", "", "", "", ""], ["9", "17-Oct", "Sat", " Beijing>BKK Departure 5:05PM", "Wangfujing - Depart to Airport 1-2pm - TG 615 Arriving BKK 9:15PM", "", "", "", "", "", "Yes (33 Seater)", ""], ["", "", "", "", "Free time / last minute shopping", "", "", "", "", "", "", ""], ["", "", "", "12:30 PM", "Check out", "", "", "", "", "", "", ""], ["", "", "", "13:00 PM", "Get on bus, head to  Beijing Capital International Airport PEK Terminal 3", "", "", "", "", "", "", ""], ["", "", "", "17:17 PM", "TG 615 Departure time", "", "", "", "", "", "", ""]], BUILT='Thu 8 Oct 09:33', YEAR=2026;
+const BAKED=[["", "", "", "", "", "", "", "", "", "", "", ""], ["Day", "Date", "Day", "Key", "Detail", "Hotel", "Need to book", "Lunch", "Snack", "Dinner", "Bus?", "Name for Map"], ["1", "9-Oct", "Fri", "BKK→Beijing · TG614 dep ~10:00", "TG 614 Arriving Beijing 3:45PM", "Renaissance Wangfujing", "", "", "", "Long time ago", "Yes (33 seater)", ""], ["", "", "", "15:45 PM", "Land PEK (TG614)", "", "", "", "", "", "", "PEK T3: 北京首都国际机场T3航站楼"], ["", "", "", "17:00 PM", "Out of airport  (33-seater, ~60 min)", "", "", "", "", "", "", "Renaissance hotel: 北京王府井万丽酒店"], ["", "", "", "18:00 PM", "Arrive Hotel > Check in @ Renaissance Wangfujing", "", "Reserve Long time ago Wangfujing APM", "", "", "", "", ""], ["", "", "", "19:00 PM", "Meet at the hotel lobby for dinner", "", "", "", "", "", "", ""], ["", "", "", "19:15 PM", "Dinner — Long time ago (15 mins walk). Book on the bus when arriving hotel.", "", "", "", "", "Long time ago", "", ""], ["", "", "", "", "", "", "", "", "", "", "", ""], ["2", "10-Oct", "Sat", "Mutianyu", " Chairlift↑ > Tower 6 · walk to ~10–11 · Toboggan↓  · Wangfujing walk", "Renaissance Wangfujing ✅", "Mutianyu + Chair lift ✅", "Mutianyu Valley", "", "Quanjude", "Yes (21 Seater)", ""], ["", "", "", "6:30 AM", "Lobby — Get on the bus", "", "", "", "", "", "", ""], ["", "", "", "8:00 AM", "Arrive Mutianyu", "", "", "", "", "", "", ""], ["", "", "", "8:45 AM", "Chairlift → Tower 6", "", "", "", "", "", "", ""], ["", "", "", "9:00 AM", "Mutianyu Wall walk Tower 6 → ~10–11 → back to Tower 6 (~2 hrs with kids)", "", "", "", "", "", "", ""], ["", "", "", "11:00 AM", "Toboggan down (kids<10 w/ adult)", "", "", "", "", "", "", ""], ["", "", "", "11:30 AM", "Lunch · Mutian Valley or Burger King on the bus", "", "", "", "", "", "", ""], ["", "", "", "13:00 PM", "Depart Mutianyu", "", "", "", "", "", "", ""], ["", "", "", "14:30 PM", "Stop by National Stadium for quick picture (Optional)", "", "", "", "", "", "", ""], ["", "", "", "15:00 PM", "Depart for Renaissance Wangfujing", "", "", "", "", "", "", ""], ["", "", "", "15:30 PM", "Wangfujing walk: in88 LEGO → APM POP MART → Hamleys", "", "", "", "", "", "", ""], ["", "", "", "18:30 PM", "Quanjude Wangfujing dinner (book)", "", "", "", "", "Quanjude", "", ""], ["", "", "", "", "", "", "", "", "", "", "", ""], ["3", "11-Oct", "Sun", "USB", "Full Day USB", "Renaissance Wangfujing ✅", "USB ✅", "USB", "USB", "CityWalk (TBD)", "Yes (21 Seater)", ""], ["", "", "", "8:00 AM", "Lobby — Get on the bus", "", "", "", "", "", "", ""], ["", "", "", "9:00 AM", "Arrive Universal Studio Beijing", "", "", "", "", "", "", ""], ["", "", "", "", "Harry Potter : Forbidden Journey (+ Flight of the Hippogriff)", "", "", "Three Broomsticks", "", "", "", ""], ["", "", "", "", "Kung Fu Panda Land : Journey of the Dragon Warrior", "", "", "Grandma Panda’s Kitchen", "", "", "", ""], ["", "", "", "", "Transformers Metrobase — Transformers: The Ride", "", "", "", "", "", "", ""], ["", "", "", "", "Jurassic World Isla Nublar — Jurassic World Adventure", "", "", "", "", "USB Citywalk", "", ""], ["", "", "", "", "Minion Land — Despicable Me Minion Mayhem", "", "", "", "", "Grandma's Home or Yueweifang", "", ""], ["", "", "", "", "Hollywood → CityWalk ", "", "", "", "", "Wangfujing", "", ""], ["", "", "", "18:00 PM", " ", "", "", "", "", "Hotpot : Nanmen Meat in Hot Pot", "", ""], ["", "", "", "", "", "", "", "", "", "", "", ""], ["4", "12-Oct", "Mon", "Summer Palace & POPLAND", "Summer Palace → 798 brief walk  →  POPLAND ~2h", "Renaissance Wangfujing ✅", "Summer Palace Basic Gate tickets", "798 Art", " POPLAND", "Fei Da Chu", "Yes (21 Seater)", ""], ["", "", "", "7:30 AM", "Meet at hotel lobby; bus to Summer Palace East Gate", "", "", "", "", "", "", ""], ["", "", "", "8:30 AM", "Summer Palace (Basic Ticket) - North Palace Gate > Suzhou Street > Longevity Hill ", "", "", "", "", "", "", ""], ["", "", "", "", "> Tower of Buddhist Incese > Long Corridor Lake View > Strolling in a Picture", "", "", "", "", "", "", ""], ["", "", "", "11:00 AM", "Walking back to bus", "", "", "", "", "", "", ""], ["", "", "", "11:30 AM", "Depart by bus → 798 Art District", "", "", "798 Art (PITAPITA?)", "", "", "", ""], ["", "", "", "12:15 PM", "798 Art District: Lunch & brief walk; main street / Bauhaus / outdoor sculptures. ", "", "", "", "", "", "", ""], ["", "", "", "15:00 PM", "Depart by bus → POPLAND", "", "", "", "", "", "", ""], ["", "", "", "15:30 PM", "POPLAND ~2h: walk / photos / shopping (sightseeing ticket; light rides optional)", "", "", "", "", "", "", ""], ["", "", "", "18:00 PM", "Comeback to Wangfujing", "", "", "", "", "Fei Da Chu", "", ""], ["", "", "", "", "", "", "", "", "", "", "", ""], ["5", "13-Oct", "Tue", "Forbidden City", "Temple of Heaven - Forbidden City - Tian An Men", "Renaissance Wangfujing ✅", "Forbidden City (Tour), Tiananmen, Temple of Heaven  ✅", "Quick Roast Duck", "", "@ Qianmen", "", ""], ["", "", "", "8:00 AM", "Meet lobby → 08:15 Temple of Heaven East Gate", "", "", "", "", "", "", ""], ["", "", "", "8:30 AM", "Temple of Heaven: Hall of Prayer → Danbi Bridge → Echo Wall / Imperial Vault → Circular Mound; through-ticket 联票 ¥34 (not park-only); skip Hall of Abstinence if tight", "", "", "", "", "", "", ""], ["", "", "", "11:00 AM", "Move to Lunch 庆丰1948·烤鸭·新京菜(故宫店) or 全福德烤鸭店(故宫店)", "", "", "เป็ดย่าง 庆丰1948·烤鸭·新京菜(故宫店)", "", "", "", ""], ["", "", "", "12:30 PM", "Walk to Meridian Gate", "", "", "全福德烤鸭店(故宫店) ", "", "", "", ""], ["", "", "", "13:00 PM", "Forbidden City private tour (booked); exit Shenwumen / North Gate", "", "", "Siji Minfu Roast Duck", "", "Tai er (太二)", "", ""], ["", "", "", "17:00 PM", "DiDi to Tiananmen East security 天安门东侧; (backup Qianmen East 前门东)", "", "", "", "", "Beijing pie", "", ""], ["", "", "", "18:00 PM", "Exit 正阳门 (Qianmen / Zhengyangmen) to have Dinner @ Qianmen", "", "", "", "", "Chaishi Fuhai Muslim Cai Roast Duck Shop", "", ""], ["", "", "", "", "", "", "", "", "", "", "", ""], ["6", "14-Oct", "Wed", "Zoo + Aquarium [Nicha PEK 11:00]", "Beijing Zoo - Panda - Nicha bus 11:00 - Aquarium - Drum & Bell Tower", "COFFIZZ Hotel ✅", "Beijing Zoo (zoo+panda 联票 all); Aquarium", "Zoo", "Aquarium", "Wangfujing", "Yes (33 seater)", ""], ["", "", "", "8:00 AM", "Meet Renaissance lobby; checkout bags → Zoo south gate", "", "", "", "", "", "", ""], ["", "", "", "8:30 AM", "Enter Zoo south gate (zoo+panda 联票 19 QR + passport)", "", "", "", "", "", "", ""], ["", "", "", "8:45 AM", "Giant Panda House", "", "", "", "", "", "", ""], ["", "", "", "11:00 AM", "Nicha family board 33-seater → PEK T3  /  Remaining group have lunch", "", "", "", "", "", "", ""], ["", "", "", "12:30 PM", "Beijing Aquarium (~15–25 min walk inside zoo)", "", "", "", "", "", "", ""], ["", "", "", "14:30 PM", "Done Aquarium; meet bus pickup point (North Exit)  → Hutong Drum & Bell Tower", "", "", "", "", "", "", ""], ["", "", "", "15:00 PM", "Hutong Drum & Bell Tower - Yandaixie St. - free time", "", "", "", "", "", "", ""], ["", "", "", "16:00 PM", "Done Hutong  → COFFIZZ", "", "", "", "", "Noodle : Fangzhuanchang No.69 Noodles", "", ""], ["", "", "", "16:45 PM", "Check-in COFFIZZ", "", "", "", "", "Hotpot : Jingzhoushuan", "", ""], ["", "", "", "17:30 PM", "Walk around - Dinner", "", "", "", "", "Fish : Kaojiang Spicy-hot Roasted Fish", "", ""], ["", "", "", "", "", "", "", "", "", "", "", ""], ["7", "15-Oct", "Thu", "Lama - Sanlitun - National Stadium", "Lama Temple - Sanlitun Shopping - National Stadium (night)", "COFFIZZ Hotel ✅", "", "Sanlitun", "B&C", "Sanlitun", "", ""], ["", "", "", "9:00 AM", "Lama Temple (Yonghegong) - ~60-90 min; modest dress / quiet", "", "", "", "", "", "", ""], ["", "", "", "10:30 AM", "DiDi -> Beijing Friendship Garden 北京友谊花园 (Carbo & Metal Hands)", "", "", "", "Metal Hands", "", "", ""], ["", "", "", "12:00 PM", "DiDi -> Sanlitun", "", "", "Carbo", "", "", "", ""], ["", "", "", "12:15 AM", "Sanlitun Taikoo Li shopping / chill  - Snack ", "", "", "", "BUTTERFUL & CREAMOROUS", "", "", ""], ["", "", "", "", "Raffles City - Dinner", "", "", "", "Tea: Longyan Chapu", "", "", ""], ["", "", "", "19:00 PM", "DiDi -> National Stadium (Bird's Nest) ", "", "", "", "Amo Shouzuo", "Brownstone", "", ""], ["", "", "", "19:30 PM", "National Stadium (Night photography) - Dinner near by", "", "", "", "", "Longrenju boiled fish", "", ""], ["", "", "", "20:00 PM", "Go back to Wangfujing / COFFIZZ", "", "", "", "", "Xiaoxiang Pavilion", "", ""], ["", "", "", "", "", "", "", "", "", "", "", ""], ["8", "16-Oct", "Fri", "Mall Cruise & CCTV", "Langyuan Station → Yintai Centre in01 → China World Mall → CCTV → The Place", "COFFIZZ Hotel ✅", "", "Gui Guishan (Buffet)", "", "", "", ""], ["", "", "", "9:00 AM", "COFFIZZ lobby → DiDi to Langyuan", "", "", "", "", "", "", ""], ["", "", "", "9:30 AM", "Langyuan Station cruise — cafés / photo / chill", "", "", "", "", "", "", ""], ["", "", "", "10:45 AM", "DiDi -> Gui Guishan 贵贵山•云贵自助烤肉(合生汇店)", "", "", "Gui Guishan", "", "", "", ""], ["", "", "", "12:00 AM", "DiDi -> Yintai Centre in01 or China World Mall ", "", "", "", "", "", "", ""], ["", "", "", "14:00 AM", "China World Mall", "", "", "", "", "", "", ""], ["", "", "", "15:00 PM", "CCTV,  exterior photos (Big Pants; exterior only)", "", "", "", "", "", "", ""], ["", "", "", "16:00 PM", "The Place mall (LED sky screen) - If not interesting go to Galaxy SOHO", "", "", "", "", "", "", ""], ["", "", "", "18:00 PM", "Dinner nearby / back toward Wangfujing", "", "", "", "", "TBD", "", ""], ["", "", "", "", "", "", "", "", "", "", "", ""], ["9", "17-Oct", "Sat", " Beijing>BKK Departure 5:05PM", "Wangfujing - Depart to Airport 1-2pm - TG 615 Arriving BKK 9:15PM", "", "", "", "", "", "Yes (33 Seater)", ""], ["", "", "", "", "Free time / last minute shopping", "", "", "", "", "", "", ""], ["", "", "", "12:30 PM", "Check out", "", "", "", "", "", "", ""], ["", "", "", "13:00 PM", "Get on bus, head to  Beijing Capital International Airport PEK Terminal 3", "", "", "", "", "", "", ""], ["", "", "", "17:17 PM", "TG 615 Departure time", "", "", "", "", "", "", ""]], BUILT='Thu 8 Oct 11:29', YEAR=2026;
 const THEME={1:{c:'#7B2FF7'},2:{c:'#D9480F'},3:{c:'#F59F00',band:'multi'},4:{c:'#12B886'},5:{c:'#C92A2A',c2:'#E0A800',band:'c2'},
  6:{c:'#1C7ED6'},7:{c:'#F08C00',g:'linear-gradient(135deg,#F08C00,#364FC7)'},8:{c:'#0CA678',c2:'#E64980',band:'c2'},9:{c:'#74C0FC'}};
 const MON={Jan:0,Feb:1,Mar:2,Apr:3,May:4,Jun:5,Jul:6,Aug:7,Sep:8,Oct:9,Nov:10,Dec:11};
@@ -208,21 +227,62 @@ else if('serviceWorker' in navigator){const first=!navigator.serviceWorker.contr
 const FB={apiKey:'AIzaSyDGfga8FCCxo2LRKfUi_W8zOh7PyKHXTK4',authDomain:'china-trip-2026-b2afb.firebaseapp.com',projectId:'china-trip-2026-b2afb',
  appId:'1:333226521212:web:d86d90558d7e6d7c8a8ff9',databaseURL:'https://china-trip-2026-b2afb-default-rtdb.asia-southeast1.firebasedatabase.app'};
 const FBU='https://www.gstatic.com/firebasejs/10.14.1/',LFU='https://unpkg.com/leaflet@1.9.4/dist/leaflet';
-const PAL=['#1C7ED6','#D9480F','#2F9E44','#C2255C','#7048E8','#0B7285','#A65A00','#4D7C0F','#9C36B5','#3B5BDB','#C92A2A','#495057']; // 12 dot colours, all readable with white text
+const PAL=['#E53935','#F57C00','#C49000','#2E7D32','#00897B','#1E88E5','#3949AB','#8E24AA','#D81B60','#6D4C41'], // 10 colours, all white letters; grey is reserved for 'last seen'
+ PALN=['Red','Orange','Gold','Green','Teal','Blue','Indigo','Purple','Pink','Brown'],GREY='#9CA3AF',FRESH=120000,KEEP=3600000;
 const STANDALONE=(window.matchMedia&&matchMedia('(display-mode: standalone)').matches)||navigator.standalone===true;
 const $=id=>document.getElementById(id),fam={};
 const tabsOn=()=>!!LS.get('fam-k')||STANDALONE||!!fam.keepTab; // keepTab: a code was rejected this visit, keep the box reachable
-function setTab(t){document.body.classList.toggle('map',t==='map');if(t!=='map'&&fam.sheet)closeSheet();document.querySelectorAll('#tabs button').forEach(b=>b.classList.toggle('on',b.dataset.tab===t));
- if(t==='map'){scrollTo(0,0);famOpen()}else{const n=hashN();if(n)go(n,0)}}
-function refreshTabs(){$('tabs').hidden=!tabsOn();if(!tabsOn())setTab('itin')}
-document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>setTab(b.dataset.tab));refreshTabs();
+const isMap=()=>document.body.classList.contains('map');
+// Map screen: full-screen overlay over the itinerary (its scroll position is kept). Opening pushes a history entry so the
+// phone's Back gesture closes it; the '← Itinerary' pill goes back through history when we pushed.
+function openMap(push){if(isMap())return;document.body.classList.add('map');
+ if(push!==false){try{history.pushState({fam:1},'');fam.pushed=true}catch(_){}}famOpen();setTimeout(()=>fam.map&&fam.map.invalidateSize(),60)}
+function closeMap(fromPop){if(!isMap())return;if(fam.sheet)closeSheet();swOpen(false);document.body.classList.remove('map');
+ if(!fromPop&&fam.pushed&&history.state&&history.state.fam){fam.pushed=false;history.back()}}
+function setTab(t){t==='map'?openMap():closeMap()}
+$('backBtn').onclick=()=>{if(fam.pushed&&history.state&&history.state.fam)history.back();else closeMap()};
+addEventListener('popstate',ev=>{if(ev.state&&ev.state.fam){if(tabsOn()){fam.pushed=true;openMap(false)}}else{fam.pushed=false;closeMap(true)}});
+if(history.state&&history.state.fam)try{history.replaceState(null,'')}catch(_){} // reloaded while the map was open
+function refreshTabs(){$('fab').hidden=!tabsOn();if(!tabsOn())closeMap()}
+// Floating button: drag anywhere, snaps to the nearer side on release, remembered per phone; < 8px of movement = tap.
+(()=>{const b=$('fab'),M=16,K='fam-fab';let st=null;
+ const ins=()=>{const c=getComputedStyle($('safeProbe'));return{t:parseFloat(c.paddingTop)||0,b:parseFloat(c.paddingBottom)||0}};
+ const clampT=t=>{const i=ins();return Math.max(i.t+M,Math.min(innerHeight-56-i.b-24,t))};
+ function place(side,top){top=clampT(top);b.style.top=top+'px';b.style.bottom='auto';b.style.right='auto';b.style.left=(side==='l'?M:innerWidth-56-M)+'px';return top}
+ function load(){let p=null;try{p=JSON.parse(LS.get(K)||'null')}catch(_){}if(p&&typeof p.top==='number')place(p.side==='l'?'l':'r',p.top)}
+ load();addEventListener('resize',load);
+ b.addEventListener('pointerdown',ev=>{if(ev.button>0)return;const r=b.getBoundingClientRect();st={id:ev.pointerId,x:ev.clientX,y:ev.clientY,l:r.left,t:r.top,moved:false};
+  b.classList.remove('snap');try{b.setPointerCapture(ev.pointerId)}catch(_){}});
+ b.addEventListener('pointermove',ev=>{if(!st||ev.pointerId!==st.id)return;const dx=ev.clientX-st.x,dy=ev.clientY-st.y;
+  if(!st.moved&&Math.hypot(dx,dy)<8)return;st.moved=true;
+  b.style.right='auto';b.style.bottom='auto';b.style.left=Math.max(0,Math.min(innerWidth-56,st.l+dx))+'px';b.style.top=clampT(st.t+dy)+'px'});
+ const end=ev=>{if(!st||ev.pointerId!==st.id)return;const s0=st;st=null;if(!s0.moved)return;fam.fabDrag=Date.now();
+  const r=b.getBoundingClientRect(),side=r.left+28<innerWidth/2?'l':'r';b.classList.add('snap');LS.set(K,JSON.stringify({side,top:place(side,r.top)}))};
+ b.addEventListener('pointerup',end);b.addEventListener('pointercancel',end);
+ b.addEventListener('click',()=>{if(fam.fabDrag&&Date.now()-fam.fabDrag<500)return;openMap()})})();
+refreshTabs();
 const msg=t=>$('famMsg').textContent=t||'';
 const safeC=c=>/^#[0-9a-f]{3,8}$/i.test(c||'')?c:'#888888';
 const ago=ms=>ms<60000?'just now':ms<3600000?Math.floor(ms/60000)+' min ago':Math.floor(ms/3600000)+' h ago';
+const seen=ms=>{const m=Math.round(ms/60000);return 'Last seen '+(m>=60?'1 h ago':Math.max(2,m)+' min ago')};
 const distM=(a,b)=>{const R=6371e3,r=Math.PI/180,dl=(b.lat-a.lat)*r,dn=(b.lng-a.lng)*r,x=Math.sin(dl/2)**2+Math.cos(a.lat*r)*Math.cos(b.lat*r)*Math.sin(dn/2)**2;return 2*R*Math.asin(Math.sqrt(x))};
-function myId(){let id=LS.get('fam-id');if(!id){id='p'+Array.from(crypto.getRandomValues(new Uint8Array(12)),b=>(b%36).toString(36)).join('');LS.set('fam-id',id)}return id}
+// One id per phone, kept in localStorage: closing and reopening the page updates the same entry (no duplicates).
+function myId(){if(fam.id)return fam.id;let id=LS.get('fam-id');if(!id){id='p'+Array.from(crypto.getRandomValues(new Uint8Array(12)),b=>(b%36).toString(36)).join('');LS.set('fam-id',id)}return fam.id=id}
 function hashStr(s){let h=2166136261;for(const ch of s){h^=ch.codePointAt(0);h=Math.imul(h,16777619)}return h>>>0}
-function myColor(){return PAL[hashStr(myId())%PAL.length]} // colour from the id hash
+// Colour: chosen + stored per phone. Until chosen, default = first colour (in order) nobody else on the map uses
+// (live or last seen); if all 10 are taken, the least-used one.
+function takenBy(){const me=fam.id||LS.get('fam-id'),m={};(fam.list||[]).forEach(p=>{if(p.id===me)return;const c=String(p.color).toUpperCase();(m[c]=m[c]||[]).push(p)});return m}
+function defColor(){const t=takenBy();let best=PAL[0],bn=1e9;PAL.forEach(c=>{const n=(t[c]||[]).length;if(n<bn){bn=n;best=c}});return best}
+function myColor(){const c=String(LS.get('fam-color')||'').toUpperCase();return PAL.includes(c)?c:defColor()}
+function colUI(){const c=myColor(),n=($('nameIn').value.trim()||LS.get('fam-name')||''),t=n?tag2(n):'';
+ ['colBtn','colBtn2'].forEach(id=>{const b=$(id);b.style.background=c;b.textContent=t});$('sasName').textContent=LS.get('fam-name')||n;
+ if(!$('swatches').hidden)renderSw()}
+function renderSw(){const t=takenBy(),mine=myColor();
+ const h=PAL.map((c,i)=>{const o=t[c];return `<button type="button" class="swb${c===mine?' on':''}" data-c="${c}" style="background:${c}" aria-pressed="${c===mine}" aria-label="${PALN[i]}${o?', used by '+e(o.map(p=>p.name).join(', ')):''}">${o?e(lab(o[0])):''}</button>`}).join('');
+ if(h===fam.swHtml)return;fam.swHtml=h;$('swatches').innerHTML=h;$('swatches').querySelectorAll('.swb').forEach(b=>b.onclick=()=>pickColor(b.dataset.c))}
+function swOpen(on){if(!$('swatches'))return;$('swatches').hidden=!on;fam.swHtml=null;['colBtn','colBtn2'].forEach(id=>$(id).setAttribute('aria-expanded',String(!!on)));if(on)renderSw()}
+function pickColor(c){LS.set('fam-color',c);swOpen(false);colUI();if(fam.sharing&&fam.last)writePos(fam.last)} // sharing: send the new colour now
+$('colBtn').onclick=$('colBtn2').onclick=()=>swOpen($('swatches').hidden);
 function fmtCode(v){const d=v.replace(/\D/g,'').slice(0,10);return [d.slice(0,3),d.slice(3,6),d.slice(6)].filter(Boolean).join(' ')}
 $('codeIn').addEventListener('input',ev=>{ev.target.value=fmtCode(ev.target.value)});
 $('joinBtn').onclick=()=>{const d=$('codeIn').value.replace(/\D/g,'');if(d.length!==10){$('famBad').textContent='Enter all 10 digits';$('famBad').hidden=false;return}
@@ -245,16 +305,21 @@ function centerMe(){if(fam.last){showMe(fam.last);fam.map.setView([fam.last.lat,
  if(!navigator.geolocation){msg("This phone can't find your location here.");return}
  navigator.geolocation.getCurrentPosition(p=>{const c={lat:p.coords.latitude,lng:p.coords.longitude};showMe(c);fam.map.setView([c.lat,c.lng],16)},
   ()=>msg('Location is turned off for this browser. Allow it in Settings.'),{enableHighAccuracy:true,maximumAge:30000,timeout:20000})}
-async function famStart(){const code=LS.get('fam-k');unsubAll();fam.code=code;fam.people={};fam.conn=false;$('famBad').hidden=true;$('famAmber').hidden=true;fam.stale=false;
+async function famStart(){const code=LS.get('fam-k');unsubAll();fam.code=code;fam.people={};fam.conn=false;fam.offOk=false;$('famBad').hidden=true;$('famAmber').hidden=true;fam.stale=false;
  if(!code){$('famCode').hidden=false;$('famMain').hidden=true;$('famBad').hidden=!fam.denied;return}
- $('famCode').hidden=true;$('famMain').hidden=false;$('nameIn').value=LS.get('fam-name')||'';drawPeople();armTimer();
+ $('famCode').hidden=true;$('famMain').hidden=false;$('nameIn').value=LS.get('fam-name')||'';drawPeople();shareUI();armTimer();
  loadLeaflet().then(initMap).catch(()=>{if(!fam.map)$('fmap').innerHTML='<p class="note pad">The map picture could not load. The name chips above still work.</p>'});
  try{const[A,D]=await Promise.all([import(FBU+'firebase-app.js'),import(FBU+'firebase-database.js')]);if(fam.code!==code)return;
   fam.D=D;fam.app=fam.app||A.initializeApp(FB);fam.db=fam.db||D.getDatabase(fam.app);
-  fam.unsubs.push(D.onValue(D.ref(fam.db,'.info/connected'),s=>{fam.conn=!!s.val();if(fam.conn){clearTimeout(fam.timer);setAmber(false)}else armTimer()}));
-  fam.unsubs.push(D.onValue(D.ref(fam.db,'.info/serverTimeOffset'),s=>{fam.off=+s.val()||0}));
-  fam.unsubs.push(D.onValue(D.ref(fam.db,`trips/${code}/people`),s=>{fam.people=s.val()||{};drawPeople()},()=>badCode()));
+  fam.unsubs.push(D.onValue(D.ref(fam.db,'.info/connected'),s=>{fam.conn=!!s.val();if(fam.conn){clearTimeout(fam.timer);setAmber(false);cleanOld()}else armTimer()}));
+  fam.unsubs.push(D.onValue(D.ref(fam.db,'.info/serverTimeOffset'),s=>{fam.off=+s.val()||0;fam.offOk=true;cleanOld()}));
+  fam.unsubs.push(D.onValue(D.ref(fam.db,`trips/${code}/people`),s=>{fam.people=s.val()||{};drawPeople();cleanOld()},()=>badCode()));
+  const iv=setInterval(cleanOld,60000);fam.unsubs.push(()=>clearInterval(iv));
  }catch(_){/* Firebase script blocked/unreachable: the 15s timer shows the amber line */}}
+// Self-cleaning: any client with the map loaded deletes entries whose server time t is more than 60 min old (server clock via
+// .info/serverTimeOffset; only once connected, so a wrong phone clock can't delete fresh spots).
+function cleanOld(){if(!fam.D||!fam.db||!fam.code||!fam.conn||!fam.offOk)return;const now=Date.now()+(fam.off||0);
+ for(const[id,p]of Object.entries(fam.people||{})){const t=p&&+p.t;if(t&&now-t>KEEP)fam.D.remove(fam.D.ref(fam.db,`trips/${fam.code}/people/${id}`)).catch(()=>{})}}
 // Denied by the database = wrong code (never the amber/no-connection path): wipe it, show the box again.
 function badCode(){stopShare();unsubAll();LS.del('fam-k');fam.code=null;fam.denied=true;fam.keepTab=true;fam.stale=false;$('famAmber').hidden=true;
  $('famBad').textContent='Code not recognised';$('famBad').hidden=false;$('famCode').hidden=false;$('famMain').hidden=true;refreshTabs()}
@@ -282,22 +347,23 @@ function makeTags(list){const out={},groups={};
   out[x.p.id]=lab}));return out}
 const lab=p=>(fam.tags&&fam.tags[p.id])||tag2(p.name);
 function liveList(){const now=Date.now()+(fam.off||0),list=[];
- for(const[id,p]of Object.entries(fam.people||{})){if(!p||typeof p.lat!=='number'||typeof p.lng!=='number')continue;const age=Math.max(0,now-(+p.t||0));if(age>600000)continue;
+ for(const[id,p]of Object.entries(fam.people||{})){if(!p||typeof p.lat!=='number'||typeof p.lng!=='number')continue;const age=Math.max(0,now-(+p.t||0));if(age>KEEP)continue; // kept 60 min, then hidden (and cleaned)
   list.push({id,name:String(p.name||'?'),color:safeC(p.color),lat:p.lat,lng:p.lng,age})}
  return list.sort((a,b)=>a.name.localeCompare(b.name))}
-function drawPeople(){if(!$('pchips'))return;const list=liveList(),me=LS.get('fam-id'),grey=!!fam.stale;fam.list=list;fam.tags=makeTags(list);
- const h=list.length?list.map(p=>`<button class="pchip${grey||p.age>120000?' old':''}" data-id="${e(p.id)}"><i class="tg" style="background:${grey?'#999':p.color}">${e(lab(p))}</i><span>${e(p.name)}${p.id===me?' (you)':''}</span></button>`).join('')
+const isOld=p=>p.age>=FRESH,dotC=p=>fam.stale||isOld(p)?GREY:p.color; // grey = last seen (or no connection)
+function drawPeople(){if(!$('pchips'))return;const list=liveList(),me=LS.get('fam-id');fam.list=list;fam.tags=makeTags(list);
+ const h=list.length?list.map(p=>`<button class="pchip${fam.stale||isOld(p)?' old':''}" data-id="${e(p.id)}"><i class="tg" style="background:${dotC(p)}">${e(lab(p))}</i><span>${e(p.name)}${p.id===me?' (you)':''}${isOld(p)?`<small>${seen(p.age)}</small>`:''}</span></button>`).join('')
   :'<p class="note" style="margin:6px 2px">No one is sharing right now.</p>';
  if(h!==fam.chipsHtml){fam.chipsHtml=h;$('pchips').innerHTML=h;
   $('pchips').querySelectorAll('.pchip').forEach(b=>b.onclick=()=>{const p=(fam.list||[]).find(x=>x.id===b.dataset.id);if(p&&fam.map)fam.map.panTo([p.lat,p.lng]);openSheet([b.dataset.id])})}
- if(fam.sheet)renderSheet();
+ if(fam.sheet)renderSheet();colUI();shareUI();
  if(fam.map&&!fam.fitted&&list.length){fam.fitted=true;if(list.length===1)fam.map.setView([list[0].lat,list[0].lng],16);else fam.map.fitBounds(L.latLngBounds(list.map(p=>[p.lat,p.lng])),{padding:[44,44],maxZoom:16})}
  drawMarkers()}
 // small grid cluster: dots closer than R px merge into a numbered circle
-function drawMarkers(){if(!fam.map||!window.L||!fam.layer)return;fam.layer.clearLayers();const grey=!!fam.stale,R=36,groups=[];
+function drawMarkers(){if(!fam.map||!window.L||!fam.layer)return;fam.layer.clearLayers();const R=36,groups=[];
  (fam.list||[]).forEach(p=>{const pt=fam.map.latLngToLayerPoint([p.lat,p.lng]),g=groups.find(g=>g.pt.distanceTo(pt)<R);if(g)g.m.push(p);else groups.push({pt,m:[p]})});
- groups.forEach(g=>{if(g.m.length===1){const p=g.m[0],f=grey||p.age>120000;
-   const mk=L.marker([p.lat,p.lng],{title:p.name,icon:L.divIcon({className:'',html:`<div class="fd${f?' old':''}" style="background:${grey?'#999':p.color}">${e(lab(p))}</div>`,iconSize:[38,38],iconAnchor:[19,19]})});
+ groups.forEach(g=>{if(g.m.length===1){const p=g.m[0],f=fam.stale||isOld(p);
+   const mk=L.marker([p.lat,p.lng],{title:p.name,icon:L.divIcon({className:'',html:`<div class="fd${f?' old':''}" style="background:${dotC(p)}">${e(lab(p))}</div>`,iconSize:[38,38],iconAnchor:[19,19]})});
    mk.on('click',()=>openSheet([p.id]));fam.layer.addLayer(mk);return}
   const b=L.latLngBounds(g.m.map(p=>[p.lat,p.lng])),c=b.getCenter(),ids=g.m.map(p=>p.id);
   const mk=L.marker(c,{title:g.m.map(p=>p.name).join(', '),icon:L.divIcon({className:'',html:`<div class="fc">${g.m.length}</div>`,iconSize:[44,44],iconAnchor:[22,22]})});
@@ -306,9 +372,9 @@ function drawMarkers(){if(!fam.map||!window.L||!fam.layer)return;fam.layer.clear
   fam.layer.addLayer(mk)})}
 function openSheet(ids){fam.sheet=ids;fam.sheetHtml=null;renderSheet();if(fam.sheet){$('sheetBg').hidden=false;$('sheet').hidden=false}}
 function closeSheet(){fam.sheet=null;fam.sheetHtml=null;$('sheet').hidden=true;$('sheetBg').hidden=true;$('sheetBody').innerHTML=''}
-function renderSheet(){const me=LS.get('fam-id'),grey=!!fam.stale,ps=(fam.sheet||[]).map(id=>(fam.list||[]).find(p=>p.id===id)).filter(Boolean);
+function renderSheet(){const me=LS.get('fam-id'),ps=(fam.sheet||[]).map(id=>(fam.list||[]).find(p=>p.id===id)).filter(Boolean);
  if(!ps.length){closeSheet();return}
- const head=p=>`<div class="sh-h"><i class="tg big" style="background:${grey?'#999':p.color}">${e(lab(p))}</i><div><div class="sh-n">${e(p.name)}${p.id===me?' (you)':''}</div><div class="note" style="margin:0">updated ${ago(p.age)}</div></div></div>`;
+ const head=p=>`<div class="sh-h"><i class="tg big" style="background:${dotC(p)}">${e(lab(p))}</i><div><div class="sh-n">${e(p.name)}${p.id===me?' (you)':''}</div><div class="note" style="margin:0">${isOld(p)?seen(p.age):'updated '+ago(p.age)}</div></div></div>`;
  let h;if(ps.length>1)h=`<div class="lab">${ps.length} people here</div>`+ps.map(p=>`<button class="sh-row" data-id="${e(p.id)}">${head(p)}</button>`).join('');
  else{const p=ps[0];h=head(p);if(p.id!==me){const W=walkLinks(p);h+=`<div class="navwrap"><a class="big walk" href="${W.ios}" data-and="${W.and}" data-web="${W.web}" onclick="return amap(this)">Walk there in Amap</a></div>`}}
  if(h===fam.sheetHtml)return; // unchanged: keep any "Open Amap website" link in place
@@ -317,13 +383,16 @@ $('sheetBg').onclick=closeSheet;addEventListener('keydown',ev=>{if(ev.key==='Esc
 (()=>{const s=$('sheet');let y0=null,dy=0;s.addEventListener('touchstart',ev=>{y0=ev.touches[0].clientY;dy=0},{passive:true});
  s.addEventListener('touchmove',ev=>{if(y0==null)return;dy=ev.touches[0].clientY-y0;if(dy>0)s.style.transform=`translateY(${dy}px)`},{passive:true});
  s.addEventListener('touchend',()=>{s.style.transform='';if(dy>70)closeSheet();y0=null;dy=0})})();
-setInterval(()=>{if(document.body.classList.contains('map'))drawPeople()},30000);
-function shareUI(){$('shareBtn').hidden=!!fam.sharing;$('stopBtn').hidden=!fam.sharing}
-$('nameIn').addEventListener('change',ev=>{const v=ev.target.value.trim().slice(0,20);if(v)LS.set('fam-name',v)});
+setInterval(()=>{if(isMap())drawPeople()},30000);
+const mineThere=()=>{const id=fam.id||LS.get('fam-id');return !!(id&&fam.people&&fam.people[id])};
+function shareUI(){if(!$('shareBtn'))return;const on=!!fam.sharing;$('setup').hidden=on;$('shareWrap').hidden=on;$('sbar').hidden=!on;$('fabOn').hidden=!on;
+ $('clearBtn').hidden=on||!mineThere()}
+$('nameIn').addEventListener('change',ev=>{const v=ev.target.value.trim().slice(0,20);if(v)LS.set('fam-name',v);colUI()});$('nameIn').addEventListener('input',colUI);
 $('shareBtn').onclick=()=>{const name=$('nameIn').value.trim().slice(0,20);if(!name){msg('Type your name first.');$('nameIn').focus();return}LS.set('fam-name',name);
  if(!navigator.geolocation){msg("This phone can't share location here.");return}
  if(!fam.db){msg("Can't reach the family map yet. Try again in a moment.");return}
- const D=fam.D;fam.me=D.ref(fam.db,`trips/${fam.code}/people/${myId()}`);fam.od=D.onDisconnect(fam.me);fam.od.remove().catch(()=>{});
+ LS.set('fam-color',myColor());swOpen(false);colUI(); // the default becomes this phone's colour
+ const D=fam.D;fam.me=D.ref(fam.db,`trips/${fam.code}/people/${myId()}`); // nothing removed on disconnect: the last spot stays (greyed) for 60 min
  fam.sharing=true;fam.lastW=null;shareUI();msg('Finding you…');
  fam.watch=navigator.geolocation.watchPosition(onPos,onGeoErr,{enableHighAccuracy:true,maximumAge:10000,timeout:60000});
  fam.keep=setInterval(()=>{if(fam.last)writePos(fam.last)},45000)};
@@ -334,10 +403,13 @@ function writePos(c){if(!fam.sharing||document.hidden)return;fam.lastW={...c,at:
  fam.D.set(fam.me,{name:LS.get('fam-name')||'?',color:myColor(),lat:c.lat,lng:c.lng,t:fam.D.serverTimestamp()})
   .then(()=>msg('Sharing · sent '+new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})))
   .catch(er=>msg(/permission/i.test(String(er&&(er.code||er.message)||er))?"The family map didn't accept your location.":"Couldn't send. Will retry."))}
-function stopShare(){if(fam.watch!=null)navigator.geolocation.clearWatch(fam.watch);fam.watch=null;clearInterval(fam.keep);
- if(fam.sharing&&fam.me){fam.D.remove(fam.me).catch(()=>{});fam.od&&fam.od.cancel().catch(()=>{})}fam.sharing=false;fam.last=null;if($('shareBtn'))shareUI();msg('')}
+// Stop (and Forget) delete this phone's entry at once, including a last spot left from an earlier visit.
+function stopShare(){if(fam.watch!=null)navigator.geolocation.clearWatch(fam.watch);fam.watch=null;clearInterval(fam.keep);const id=fam.id||LS.get('fam-id');
+ if(fam.D&&fam.db&&fam.code&&id&&(fam.sharing||mineThere())){fam.D.remove(fam.D.ref(fam.db,`trips/${fam.code}/people/${id}`)).catch(()=>{});if(fam.people)delete fam.people[id]}
+ fam.sharing=false;fam.last=null;if($('shareBtn')){shareUI();drawPeople()}msg('')}
 checkCode(LS.get('fam-k'));
 $('stopBtn').onclick=()=>{stopShare();msg('Stopped. Nobody can see you now.')};
-$('forgetBtn').onclick=()=>{stopShare();unsubAll();['fam-k','fam-name','fam-id','fam-color'].forEach(LS.del);fam.code=null;fam.people={};fam.fitted=false;$('nameIn').value='';drawPeople();
+$('clearBtn').onclick=()=>{stopShare();msg('Removed. Nobody can see you now.')};
+$('forgetBtn').onclick=()=>{stopShare();unsubAll();['fam-k','fam-name','fam-id','fam-color'].forEach(LS.del);fam.id=null;fam.code=null;fam.people={};fam.fitted=false;$('nameIn').value='';drawPeople();
  if(STANDALONE){$('famMain').hidden=true;$('famCode').hidden=false}else refreshTabs()};
 </script></body></html>
