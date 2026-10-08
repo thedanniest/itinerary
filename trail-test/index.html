@@ -1,0 +1,537 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex"><meta name="theme-color" content="#ffffff">
+<title>TEST trail preview · Beijing trip</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font:16px/1.45 -apple-system,BlinkMacSystemFont,system-ui,"PingFang SC","Helvetica Neue",sans-serif;background:#fff;color:#222}
+.top{position:sticky;top:0;z-index:5;background:#fff;box-shadow:0 2px 10px #0000000f;padding:calc(8px + env(safe-area-inset-top)) 10px 8px}
+.chips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:2px}.chips::-webkit-scrollbar{display:none}
+.chip{flex:0 0 auto;min-width:56px;min-height:44px;border-radius:22px;border:2px solid var(--c);background:#fff;color:#222;text-decoration:none;font-size:14px;font-weight:700;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.1;padding:0 10px}
+.chip small{font-size:11px;font-weight:500;color:#555}.chip.on{background:var(--c);background:var(--g,var(--c));color:#fff;border-color:transparent}.chip.on small{color:#fff}
+.bar{display:flex;gap:8px;margin-top:8px}.bar button{flex:1;min-height:44px;border-radius:12px;border:1px solid #ddd;background:#fff;color:#222;font:inherit;font-weight:700;box-shadow:0 1px 3px #0001}
+main{padding:14px;max-width:640px;margin:auto}
+.card{background:#fff;border-radius:16px;box-shadow:0 6px 20px #0000001a,0 1px 3px #0000000d;margin-bottom:16px;overflow:hidden}
+.next{padding:18px}.lbl{font-size:13px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:.04em}
+.next .t{font-size:30px;font-weight:800;color:#111}.next .en{font-size:18px;font-weight:600;margin:2px 0 6px}
+.cn{font-size:36px;font-weight:800;line-height:1.25;margin:10px 0;word-break:break-all;color:#111}
+.nav{display:flex;align-items:center;justify-content:center;width:100%;min-height:52px;border-radius:12px;background:#222;color:#fff;font-weight:700;font-size:18px;text-decoration:none;margin-top:8px}
+.amweb{display:flex;align-items:center;justify-content:center;min-height:44px;color:#222;font-weight:600;font-size:15px;text-decoration:underline}.mini .amweb{display:inline-flex;padding:0 6px;background:none;color:#222;border:0}
+.none{color:#666;font-size:14px;margin:6px 0 0}
+.day{scroll-margin-top:126px;outline:3px solid transparent;transition:outline-color .3s}.day.hl{outline-color:#222}
+.dh{position:relative;padding:12px 16px 8px 20px;background:var(--tg,linear-gradient(var(--t),var(--t))),#fff}
+.dh:before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--g,var(--c))}
+.dh.multi:after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:linear-gradient(90deg,#F59F00,#F03E3E,#AE3EC9,#1C7ED6,#37B24D)}
+.dh.c2:after{content:"";position:absolute;left:4px;bottom:0;width:40%;height:3px;background:var(--c2)}
+.dh h2,.dh .meta{color:#222}.dh h2{margin:0;font-size:21px;font-weight:800;color:#111}.meta{font-size:14px;color:#444;margin:4px 0 8px}.meta b{color:#111}
+ol{list-style:none;margin:0 16px 14px 22px;padding:0;border-left:2px solid #eee;position:relative}
+/* timeline: line fills with the day colour down to now (height set by fillLines); ticks on finished stops; bigger pulsing dot on the current one */
+.tl-fill{position:absolute;left:-2px;top:0;width:2px;height:0;background:var(--c);pointer-events:none}
+ol>li.past:before{content:"\2713";background:#fff;color:#8A8A8A;font:900 12px/14px -apple-system,system-ui,sans-serif;text-align:center}
+ol>li.now:before{left:-23px;top:8px;width:20px;height:20px;animation:ring 2s ease-out infinite}
+ol>li{position:relative;padding:6px 0 12px 16px}ol>li:before{content:"";position:absolute;left:-8px;top:11px;width:14px;height:14px;border-radius:50%;background:var(--c);background:var(--g,var(--c))}
+ol>li.past>.lc{opacity:.5}ol>li.now{background:#fff;border-radius:12px;box-shadow:0 4px 14px #0000001f;margin:4px 0 8px 12px;padding-left:8px}.tag{display:inline-block;font-size:12px;font-weight:800;padding:1px 9px 1px 7px;border-radius:10px;background:#fff;border:1.5px solid var(--c);color:#111}.bkk{font-size:11px;font-weight:600;color:#666;background:#eee;border-radius:8px;padding:1px 6px;margin-left:4px}.tag.nxt{background:#fff;color:#222;border:1px solid #222}.cd{text-transform:none;color:#222}ol>li.nx{background:#f7f7f7;border-radius:10px}.tm{font-weight:800;font-variant-numeric:tabular-nums}
+.sub{font-size:14px;color:#444;margin:2px 0 0;padding-left:18px}.food{font-size:13px;color:#555;margin-top:2px}
+.licn{font-size:20px;font-weight:700}.mini{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}.mini a{min-height:44px;display:inline-flex;align-items:center;padding:0 14px;border-radius:12px;text-decoration:none;font-weight:700;font-size:15px;background:#222;color:#fff}.mini a+a{background:#fff;color:#222;border:1px solid #ccc}
+#banner div{border-radius:16px;padding:16px;margin:0 0 14px;font-size:20px;font-weight:800;text-align:center}.ok{background:#2B8A3E;color:#fff}.line{background:#222;color:#fff;font-size:24px!important}h1.ttl{font-size:23px;font-weight:800;color:#111;margin:2px 2px 0;letter-spacing:-.01em}.live{font-size:13px;color:#777;margin:2px 2px 12px}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--c);margin-right:7px;vertical-align:1px}
+.dot.pulse{animation:ring 2s ease-out infinite}
+@keyframes ring{0%{box-shadow:0 0 0 0 var(--c)}70%,100%{box-shadow:0 0 0 7px transparent}}
+@media (prefers-reduced-motion:reduce){.dot.pulse,ol>li.now:before{animation:none}}
+.cd.soon{color:var(--c);font-weight:800}
+[hidden]{display:none!important}
+.fab{position:fixed;left:auto;right:16px;bottom:calc(24px + env(safe-area-inset-bottom));z-index:900;width:56px;height:56px;border-radius:50%;border:0;padding:0;background:#222;color:#fff;box-shadow:0 6px 16px #0000003d,0 2px 5px #00000026;display:flex;align-items:center;justify-content:center;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent;cursor:pointer}
+.fab.snap{transition:left .2s ease-out,top .2s ease-out}.fab svg{width:28px;height:28px;pointer-events:none}
+.fab .on{position:absolute;top:5px;right:5px;width:14px;height:14px;border-radius:50%;background:#2FB344;border:2px solid #222}
+body.map .fab{display:none!important}body.map{overflow:hidden}
+#fam{display:none}body.map #fam{display:flex}
+.fam{position:fixed;inset:0;z-index:1500;background:#fff;flex-direction:column}.pad{padding:16px}
+.mtop{flex:0 0 auto;display:flex;align-items:center;gap:12px;padding:calc(8px + env(safe-area-inset-top)) 12px 8px;background:#fff;box-shadow:0 2px 10px #00000014;position:relative;z-index:3}
+.pill{min-height:44px;padding:0 16px;border-radius:22px;border:1px solid #ddd;background:#fff;font:inherit;font-weight:700;font-size:15px;color:#111;box-shadow:0 1px 3px #0001;cursor:pointer}
+.mtop h1{margin:0;font-size:19px;font-weight:800;color:#111}
+.mbody{flex:1;min-height:0;display:flex;flex-direction:column;overflow:auto}.mbody>.card{margin:14px}
+#famMain:not([hidden]){flex:1;min-height:0;display:flex;flex-direction:column}
+.mapbox{flex:1;min-height:200px;background:#eef0f2}
+.panel{flex:0 0 auto;background:#fff;padding:12px 14px calc(10px + env(safe-area-inset-bottom));box-shadow:0 -4px 14px #0000001a;position:relative;z-index:2;max-height:60vh;overflow:auto}
+.amber{background:#FFF3BF;color:#5c3c00;border-radius:12px;padding:12px 14px;font-weight:700;margin:10px 12px 0}
+.bad{background:#FFE3E3;color:#7a1414;border-radius:12px;padding:12px 14px;font-weight:700;margin:10px 12px 0}
+.namerow{display:flex;gap:10px;align-items:center;margin-bottom:12px}.fam .namerow input{flex:1;min-width:0;margin:0}
+.colbtn{flex:0 0 auto;width:44px;height:44px;border-radius:50%;border:3px solid #fff;padding:0;color:#fff;font:800 14px -apple-system,system-ui,sans-serif;box-shadow:0 0 0 1px #333,0 2px 6px #00000040;cursor:pointer}
+.swbox{position:relative;margin:2px -14px 10px}.swbox:after{content:"";position:absolute;top:0;right:0;bottom:0;width:44px;background:linear-gradient(90deg,#fff0,#fff 85%);pointer-events:none;transition:opacity .2s}.swbox.end:after{opacity:0}
+.swg{position:relative;display:flex;gap:14px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x proximity;scroll-padding:0 16px;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;scrollbar-width:none;padding:6px 44px 8px 16px}.swg::-webkit-scrollbar{display:none}
+.swb{flex:0 0 44px;scroll-snap-align:start;width:44px;height:44px;border-radius:50%;border:3px solid #fff;padding:0;color:#fff;font:800 13px -apple-system,system-ui,sans-serif;box-shadow:0 0 0 1px #333,0 2px 6px #00000040;cursor:pointer}.swb.on{box-shadow:0 0 0 1px #333,0 0 0 3px #fff,0 0 0 5px #111}
+.sbar{display:flex;align-items:center;gap:12px;margin-bottom:4px}.sas{flex:1;min-width:0;font-size:16px;color:#333;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.sas b{color:#111}
+.stopsm{flex:0 0 auto;min-height:44px;padding:0 16px;border:0;border-radius:12px;background:#C92A2A;color:#fff;font:inherit;font-size:16px;font-weight:800;cursor:pointer}
+.lab{display:block;font-weight:800;font-size:17px;margin-bottom:8px;color:#111}
+.fam input{width:100%;min-height:50px;font:inherit;font-size:20px;border:1px solid #ccc;border-radius:12px;padding:0 14px;margin-bottom:12px;background:#fff;color:#111}
+#codeIn{font-size:28px;letter-spacing:.06em;text-align:center;font-variant-numeric:tabular-nums}
+.big{display:block;width:100%;min-height:58px;border:0;border-radius:14px;font:inherit;font-size:19px;font-weight:800;background:#222;color:#fff}
+.big.share{background:#2B8A3E}.big.stop{background:#C92A2A}
+.note{font-size:14px;color:#555;margin:10px 0 0}
+.linkbtn{background:none;border:0;padding:0;min-height:44px;font:inherit;font-size:14px;color:#666;text-decoration:underline}
+.leaflet-tooltip.nm{font:700 13px -apple-system,system-ui,sans-serif;padding:2px 6px;border-radius:8px}.leaflet-tooltip.nm.old{opacity:.55!important}
+
+.pchips{flex:0 0 auto;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:8px 10px}.pchips::-webkit-scrollbar{display:none}
+.pchip{flex:0 0 auto;display:flex;align-items:center;gap:8px;min-height:46px;padding:0 14px 0 6px;border-radius:23px;border:1px solid #ddd;background:#fff;font:inherit;font-weight:700;font-size:15px;color:#111;box-shadow:0 1px 3px #0001}
+.pchip.old{color:#444}.pchip span small{display:block;font-size:12px;font-weight:600;color:#666;line-height:1.1}
+.tg{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;color:#fff;box-shadow:inset 0 0 0 1px #0000001f;font-style:normal;font-weight:800;font-size:13px;flex:0 0 auto}.tg.big{width:46px;height:46px;font-size:17px}
+.fd{width:38px;height:38px;border-radius:50%;border:3px solid #fff;box-shadow:0 0 0 1px #333,0 2px 7px #00000052;color:#fff;font:800 13px/32px -apple-system,system-ui,sans-serif;text-align:center}.fd.old{opacity:.7;border:0;box-shadow:none;line-height:38px}
+.trd{width:6px;height:6px;border-radius:50%;box-shadow:0 0 0 1.5px #fff,0 0 0 2.5px #333;pointer-events:none}
+.ttb{display:inline-block;background:#C92A2A;color:#fff;font:800 11px/1 -apple-system,system-ui,sans-serif;padding:5px 8px;border-radius:8px;white-space:nowrap}#fmap>.ttb{position:absolute;left:8px;bottom:8px;z-index:1000;pointer-events:none}main>.ttb{margin:10px 12px 0}
+.fc{width:44px;height:44px;border-radius:50%;background:#222;color:#fff;border:3px solid #fff;box-shadow:0 2px 8px #0005;font:800 16px/38px -apple-system,system-ui,sans-serif;text-align:center}
+.mebtn{width:48px;height:48px;border-radius:50%;border:0;background:#fff;box-shadow:0 2px 8px #0004;font:800 15px -apple-system,system-ui,sans-serif;color:#111;cursor:pointer}
+.sheetbg{position:fixed;inset:0;background:#0005;z-index:2000}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:2001;background:#fff;border-radius:20px 20px 0 0;box-shadow:0 -6px 24px #0003;padding:10px 18px calc(20px + env(safe-area-inset-bottom));max-width:640px;margin:0 auto;max-height:70vh;overflow:auto;transition:transform .15s}
+.grab{width:40px;height:5px;border-radius:3px;background:#ccc;margin:0 auto 14px}
+.sh-h{display:flex;align-items:center;gap:12px;margin-bottom:16px}.sh-n{font-size:20px;font-weight:800;color:#111}
+.sh-row{display:block;width:100%;text-align:left;background:none;border:0;border-bottom:1px solid #eee;padding:10px 0 0;font:inherit;color:inherit;cursor:pointer}
+.big.walk{display:flex;align-items:center;justify-content:center;text-decoration:none;background:#222}
+footer{font-size:12px;color:#666;text-align:center;padding:6px 0 30px}
+</style></head><body>
+<div class="top"><nav class="chips" id="chips"></nav>
+<div class="bar"><button id="bToday">Today</button><button id="bNext">Next stop</button></div></div>
+<main><h1 class="ttl">Beijing · 9–17 Oct 2026</h1><div class="live" id="live"></div><section class="card next" id="next"></section><div id="days"></div><div id="banner"></div><footer id="upd"></footer></main>
+<button id="fab" class="fab" type="button" hidden aria-label="Family map"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.6A2.6 2.6 0 1 1 12 6.4a2.6 2.6 0 0 1 0 5.2z"/></svg><i id="fabOn" class="on" hidden></i></button>
+<div id="safeProbe" aria-hidden="true" style="position:fixed;left:0;top:0;width:0;height:0;visibility:hidden;pointer-events:none;padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)"></div>
+<section id="fam" class="fam" aria-label="Family map">
+ <div class="mtop"><button id="backBtn" class="pill" type="button">← Itinerary</button><h1>Family map</h1></div>
+ <div id="famAmber" class="amber" hidden>Can't reach the family map. Turn off Wi‑Fi to use roaming.</div>
+ <div id="famBad" class="bad" hidden role="alert">Code not recognised</div>
+ <div class="mbody">
+ <div id="famCode" class="card pad" hidden>
+  <label for="codeIn" class="lab">Enter family code</label>
+  <input id="codeIn" inputmode="numeric" autocomplete="off" placeholder="123 456 7890" maxlength="12" aria-describedby="codeHelp">
+  <button id="joinBtn" class="big">Join</button>
+  <p id="codeHelp" class="note">It's the 10-digit number Dan sent in the family chat.</p>
+ </div>
+ <div id="famMain" hidden>
+  <div id="pchips" class="pchips" aria-label="People on the map"></div>
+  <div id="fmap" class="mapbox" role="img" aria-label="Map of family members"></div>
+  <div class="panel">
+   <div id="setup"><label for="nameIn" class="lab">Your name</label>
+    <div class="namerow"><input id="nameIn" maxlength="20" autocomplete="nickname" placeholder="e.g. Mom"><button id="colBtn" class="colbtn" type="button" aria-label="Choose your colour" aria-expanded="false"></button></div></div>
+   <div id="sbar" class="sbar" hidden><button id="colBtn2" class="colbtn" type="button" aria-label="Change your colour" aria-expanded="false"></button><div class="sas">Sharing as <b id="sasName"></b></div><button id="stopBtn" class="stopsm" type="button">Stop sharing</button></div>
+   <div id="swatches" class="swbox" hidden><div id="swrow" class="swg" role="group" aria-label="Colours"></div></div>
+   <div id="shareWrap"><button id="shareBtn" class="big share">Share my location</button>
+    <p class="note">Only shares while this page is open and you've tapped Share. Your last spot stays on the map, greyed, for up to 1 hour.</p></div>
+   <button id="clearBtn" class="linkbtn" type="button" hidden>Remove my last spot now</button>
+   <button id="forgetBtn" class="linkbtn">Forget this phone</button>
+   <p id="famMsg" class="note" aria-live="polite"></p>
+  </div>
+ </div>
+ </div>
+</section>
+<div id="sheetBg" class="sheetbg" hidden></div><div id="sheet" class="sheet" hidden role="dialog" aria-modal="true" aria-label="Person"><div class="grab"></div><div id="sheetBody"></div></div>
+
+<script>
+// ---- family map access: #k=<10 digits> -> localStorage, then strip the hash ----
+// ?demo=trail = self-contained QC demo of trails: fake people, in-page mock database, no Firebase, no code, nothing saved.
+// Without that exact flag DEMO is false and none of the demo code runs.
+const DEMO=new URLSearchParams(location.search).get('demo')==='trail',TRAILTEST=true; // TRAILTEST: true only in trail-test/index.html
+const LS=DEMO?(()=>{const m={'fam-k':'demo'};return{get:k=>k in m?m[k]:null,set:(k,v)=>{m[k]=String(v)},del:k=>{delete m[k]}}})():{get:k=>{try{return localStorage.getItem(k)}catch(_){return null}},set:(k,v)=>{try{localStorage.setItem(k,v)}catch(_){}},del:k=>{try{localStorage.removeItem(k)}catch(_){}}};
+function takeK(){if(DEMO)return false;const m=location.hash.match(/^#(?:.*&)?k=(\d{10})(?:&|$)/);if(!m)return false;LS.set('fam-k',m[1]);history.replaceState(null,'',location.pathname+location.search);return true}
+takeK();
+addEventListener('hashchange',()=>{if(takeK()&&window.refreshTabs){fam.denied=false;refreshTabs();checkCode(LS.get('fam-k'));if(isMap())famStart()}}); // link tapped while the page is already open
+// Either a published-to-web CSV of the `app` tab (cols A–N as tab 1) or a gviz feed .../gviz/tq?tqx=out:csv (cols B–L then N). Placeholder for now.
+// Filtered `app` tab: cols B–L then N, row 1 = sheet row 1 (no costs, no roster).
+const CSV_URL='https://docs.google.com/spreadsheets/d/e/2PACX-1vTHd0Mn077tcoHy_0liGlBuQvbrSjAmjwo7Bp9TBeZU2B5vH_rDkGsnByTtZXzJA77i6aaoldDZeHir/pub?gid=1795464233&single=true&output=csv';
+const BAKED=[["", "", "", "", "", "", "", "", "", "", "", ""], ["Day", "Date", "Day", "Key", "Detail", "Hotel", "Need to book", "Lunch", "Snack", "Dinner", "Bus?", "Name for Map"], ["1", "9-Oct", "Fri", "BKK→Beijing · TG614 dep ~10:00", "TG 614 Arriving Beijing 3:45PM", "Renaissance Wangfujing", "", "", "", "Long time ago", "Yes (33 seater)", ""], ["", "", "", "15:45 PM", "Land PEK (TG614)", "", "", "", "", "", "", "PEK T3: 北京首都国际机场T3航站楼"], ["", "", "", "17:00 PM", "Out of airport  (33-seater, ~60 min)", "", "", "", "", "", "", ""], ["", "", "", "18:00 PM", "Arrive Hotel > Check in @ Renaissance Wangfujing", "", "Reserve Long time ago Wangfujing APM", "", "", "", "", "Renaissance hotel: 北京王府井万丽酒店"], ["", "", "", "19:00 PM", "Meet at the hotel lobby for dinner", "", "", "", "", "", "", ""], ["", "", "", "19:15 PM", "Dinner — Long time ago (15 mins walk). Book on the bus when arriving hotel.", "", "", "", "", "Long time ago", "", ""], ["", "", "", "", "", "", "", "", "", "", "", ""], ["2", "10-Oct", "Sat", "Mutianyu", " Chairlift↑ > Tower 6 · walk to ~10–11 · Toboggan↓  · Wangfujing walk", "Renaissance Wangfujing ✅", "Mutianyu + Chair lift ✅", "Mutianyu Valley", "", "Quanjude", "Yes (21 Seater)", ""], ["", "", "", "6:30 AM", "Lobby — Get on the bus", "", "", "", "", "", "", ""], ["", "", "", "8:00 AM", "Arrive Mutianyu", "", "", "", "", "", "", "Mutianyu: 慕田峪长城"], ["", "", "", "8:45 AM", "Chairlift → Tower 6", "", "", "", "", "", "", ""], ["", "", "", "9:00 AM", "Mutianyu Wall walk Tower 6 → ~10–11 → back to Tower 6 (~2 hrs with kids)", "", "", "", "", "", "", ""], ["", "", "", "11:00 AM", "Toboggan down (kids<10 w/ adult)", "", "", "", "", "", "", ""], ["", "", "", "11:30 AM", "Lunch · Mutian Valley or Burger King on the bus", "", "", "", "", "", "", ""], ["", "", "", "13:00 PM", "Depart Mutianyu", "", "", "", "", "", "", ""], ["", "", "", "14:30 PM", "Stop by National Stadium for quick picture (Optional)", "", "", "", "", "", "", ""], ["", "", "", "15:00 PM", "Depart for Renaissance Wangfujing", "", "", "", "", "", "", ""], ["", "", "", "15:30 PM", "Wangfujing walk: in88 LEGO → APM POP MART → Hamleys", "", "", "", "", "", "", ""], ["", "", "", "18:30 PM", "Quanjude Wangfujing dinner (book)", "", "", "", "", "Quanjude", "", ""], ["", "", "", "", "", "", "", "", "", "", "", ""], ["3", "11-Oct", "Sun", "USB", "Full Day USB", "Renaissance Wangfujing ✅", "USB ✅", "USB", "USB", "CityWalk (TBD)", "Yes (21 Seater)", ""], ["", "", "", "8:00 AM", "Lobby — Get on the bus", "", "", "", "", "", "", ""], ["", "", "", "9:00 AM", "Arrive Universal Studio Beijing", "", "", "", "", "", "", "Universal: 北京环球度假区"], ["", "", "", "", "Harry Potter : Forbidden Journey (+ Flight of the Hippogriff)", "", "", "Three Broomsticks", "", "", "", ""], ["", "", "", "", "Kung Fu Panda Land : Journey of the Dragon Warrior", "", "", "Grandma Panda’s Kitchen", "", "", "", ""], ["", "", "", "", "Transformers Metrobase — Transformers: The Ride", "", "", "", "", "", "", ""], ["", "", "", "", "Jurassic World Isla Nublar — Jurassic World Adventure", "", "", "", "", "USB Citywalk", "", ""], ["", "", "", "", "Minion Land — Despicable Me Minion Mayhem", "", "", "", "", "Grandma's Home or Yueweifang", "", ""], ["", "", "", "", "Hollywood → CityWalk ", "", "", "", "", "Wangfujing", "", ""], ["", "", "", "18:00 PM", " ", "", "", "", "", "Hotpot : Nanmen Meat in Hot Pot", "", ""], ["", "", "", "", "", "", "", "", "", "", "", ""], ["4", "12-Oct", "Mon", "Summer Palace & POPLAND", "Summer Palace → 798 brief walk  →  POPLAND ~2h", "Renaissance Wangfujing ✅", "Summer Palace Basic Gate tickets", "798 Art", " POPLAND", "Fei Da Chu", "Yes (21 Seater)", ""], ["", "", "", "7:30 AM", "Meet at hotel lobby; bus to Summer Palace East Gate", "", "", "", "", "", "", ""], ["", "", "", "8:30 AM", "Summer Palace (Basic Ticket) - North Palace Gate > Suzhou Street > Longevity Hill ", "", "", "", "", "", "", "Summer Palace North Gate: 颐和园北宫门"], ["", "", "", "", "> Tower of Buddhist Incese > Long Corridor Lake View > Strolling in a Picture", "", "", "", "", "", "", ""], ["", "", "", "11:00 AM", "Walking back to bus", "", "", "", "", "", "", ""], ["", "", "", "11:30 AM", "Depart by bus → 798 Art District", "", "", "798 Art (PITAPITA?)", "", "", "", "798: 798艺术区"], ["", "", "", "12:15 PM", "798 Art District: Lunch & brief walk; main street / Bauhaus / outdoor sculptures. ", "", "", "", "", "", "", ""], ["", "", "", "15:00 PM", "Depart by bus → POPLAND", "", "", "", "", "", "", ""], ["", "", "", "15:30 PM", "POPLAND ~2h: walk / photos / shopping (sightseeing ticket; light rides optional)", "", "", "", "", "", "", "POPLAND: 泡泡玛特城市乐园(朝阳公园)"], ["", "", "", "18:00 PM", "Comeback to Wangfujing", "", "", "", "", "Fei Da Chu", "", ""], ["", "", "", "", "", "", "", "", "", "", "", ""], ["5", "13-Oct", "Tue", "Forbidden City", "Temple of Heaven - Forbidden City - Tian An Men", "Renaissance Wangfujing ✅", "Forbidden City (Tour), Tiananmen, Temple of Heaven  ✅", "Quick Roast Duck", "", "@ Qianmen", "", ""], ["", "", "", "8:00 AM", "Meet lobby → 08:15 Temple of Heaven East Gate", "", "", "", "", "", "", "Temple of Heaven East Gate: 天坛公园东门"], ["", "", "", "8:30 AM", "Temple of Heaven: Hall of Prayer → Danbi Bridge → Echo Wall / Imperial Vault → Circular Mound; through-ticket 联票 ¥34 (not park-only); skip Hall of Abstinence if tight", "", "", "", "", "", "", "Temple of Heaven South Gate: 天坛公园南门"], ["", "", "", "11:00 AM", "Get on Bus on ToH South Gate → Move to Lunch 庆丰1948·烤鸭·新京菜(故宫店) or 全福德烤鸭店(故宫店)", "", "", "เป็ดย่าง 庆丰1948·烤鸭·新京菜(故宫店)", "", "", "", "Palace Museum Donghuamen: 故宫博物院东华门"], ["", "", "", "12:30 PM", "Walk to Meridian Gate", "", "", "全福德烤鸭店(故宫店) ", "", "", "", "Forbidden City Meridian Gate: 故宫博物院午门"], ["", "", "", "13:00 PM", "Forbidden City private tour (booked); exit Shenwumen / North Gate", "", "", "Siji Minfu Roast Duck", "", "Tai er (太二)", "", ""], ["", "", "", "17:00 PM", "DiDi to Tiananmen South East Gate (04)", "", "", "", "", "Beijing pie", "", "Tiananmen Security Check 04: 天安门广场东侧路南安检04"], ["", "", "", "18:00 PM", "Exit 正阳门 (Qianmen / Zhengyangmen) to have Dinner @ Qianmen", "", "", "", "", "Chaishi Fuhai Muslim Cai Roast Duck Shop", "", ""], ["", "", "", "", "", "", "", "", "", "", "", ""], ["6", "14-Oct", "Wed", "Zoo + Aquarium [Nicha PEK 11:00]", "Beijing Zoo - Panda - Nicha bus 11:00 - Aquarium - Drum & Bell Tower", "COFFIZZ Hotel ✅", "Beijing Zoo (zoo+panda 联票 all); Aquarium", "Zoo", "Aquarium", "Wangfujing", "Yes (33 seater)", ""], ["", "", "", "8:00 AM", "Meet Renaissance lobby; checkout bags → Zoo south gate", "", "", "", "", "", "", ""], ["", "", "", "8:30 AM", "Enter Zoo south gate (zoo+panda 联票 19 QR + passport)", "", "", "", "", "", "", "Zoo South Gate: 北京动物园南门"], ["", "", "", "8:45 AM", "Giant Panda House", "", "", "", "", "", "", "Panda House: 北京动物园大熊猫馆"], ["", "", "", "11:00 AM", "Nicha family board 33-seater → PEK T3  /  Remaining group have lunch", "", "", "", "", "", "", "PEK T3: 北京首都国际机场T3航站楼"], ["", "", "", "12:30 PM", "Beijing Aquarium (~15–25 min walk inside zoo)", "", "", "", "", "", "", "Aquarium: 北京海洋馆"], ["", "", "", "14:30 PM", "Done Aquarium; meet bus pickup point (North Exit)  → Hutong Drum & Bell Tower", "", "", "", "", "", "", "Aquarium North Exit: 北京动物园北门"], ["", "", "", "15:00 PM", "Hutong Drum & Bell Tower - Yandaixie St. - free time", "", "", "", "", "", "", "Drum Tower: 北京鼓楼"], ["", "", "", "16:00 PM", "Done Hutong  → COFFIZZ", "", "", "", "", "Noodle : Fangzhuanchang No.69 Noodles", "", ""], ["", "", "", "16:45 PM", "Check-in COFFIZZ", "", "", "", "", "Hotpot : Jingzhoushuan", "", ""], ["", "", "", "17:30 PM", "Walk around - Dinner", "", "", "", "", "Fish : Kaojiang Spicy-hot Roasted Fish", "", ""], ["", "", "", "", "", "", "", "", "", "", "", ""], ["7", "15-Oct", "Thu", "Lama - Sanlitun - National Stadium", "Lama Temple - Sanlitun Shopping - National Stadium (night)", "COFFIZZ Hotel ✅", "", "Sanlitun", "B&C", "Sanlitun", "", ""], ["", "", "", "9:00 AM", "Lama Temple (Yonghegong) - ~60-90 min; modest dress / quiet", "", "", "", "", "", "", "Lama Temple: 雍和宫"], ["", "", "", "10:30 AM", "DiDi -> Beijing Friendship Garden 北京友谊花园 (Carbo & Metal Hands)", "", "", "", "Metal Hands", "", "", "Tieshou Coffee Friendship Garden Shop: 铁手咖啡友谊花园店"], ["", "", "", "12:00 PM", "DiDi -> Sanlitun", "", "", "Carbo", "", "", "", "Sanlitun Taikoo Li North: 三里屯太古里北区（西1门）"], ["", "", "", "12:15 AM", "Sanlitun Taikoo Li shopping / chill  - Snack ", "", "", "", "BUTTERFUL & CREAMOROUS", "", "", ""], ["", "", "", "", "Raffles City - Dinner", "", "", "", "Tea: Longyan Chapu", "", "", "Raffles City: 北京来福士中心"], ["", "", "", "19:00 PM", "DiDi -> National Stadium (Bird's Nest) ", "", "", "", "Amo Shouzuo", "Brownstone", "", ""], ["", "", "", "19:30 PM", "National Stadium (Night photography) - Dinner near by", "", "", "", "", "Longrenju boiled fish", "", "National Stadium (Northeast Gate): 国家体育场（东北门）"], ["", "", "", "20:00 PM", "Go back to Wangfujing / COFFIZZ", "", "", "", "", "Xiaoxiang Pavilion", "", ""], ["", "", "", "", "", "", "", "", "", "", "", ""], ["8", "16-Oct", "Fri", "Mall Cruise & CCTV", "Langyuan Station → Yintai Centre in01 → China World Mall → CCTV → The Place", "COFFIZZ Hotel ✅", "", "Gui Guishan (Buffet)", "", "", "", ""], ["", "", "", "9:00 AM", "COFFIZZ lobby → DiDi to Langyuan", "", "", "", "", "", "", "Langyuan: 郎园Station"], ["", "", "", "9:30 AM", "Langyuan Station cruise — cafés / photo / chill", "", "", "", "", "", "", ""], ["", "", "", "10:45 AM", "DiDi -> Gui Guishan 贵贵山•云贵自助烤肉(合生汇店)", "", "", "Gui Guishan", "", "", "", "Yintai in01: 银泰中心in01"], ["", "", "", "12:00 AM", "DiDi -> Yintai Centre in01 or China World Mall ", "", "", "", "", "", "", ""], ["", "", "", "14:00 AM", "China World Mall", "", "", "", "", "", "", "China World: 国贸商城"], ["", "", "", "15:00 PM", "CCTV,  exterior photos (Big Pants; exterior only)", "", "", "", "", "", "", "CCTV: 中央电视台总部大楼"], ["", "", "", "16:00 PM", "The Place mall (LED sky screen) - If not interesting go to Galaxy SOHO", "", "", "", "", "", "", "The Place: 世贸天阶"], ["", "", "", "18:00 PM", "Dinner nearby / back toward Wangfujing", "", "", "", "", "TBD", "", ""], ["", "", "", "", "", "", "", "", "", "", "", ""], ["9", "17-Oct", "Sat", " Beijing>BKK Departure 5:05PM", "Wangfujing - Depart to Airport 1-2pm - TG 615 Arriving BKK 9:15PM", "", "", "", "", "", "Yes (33 Seater)", ""], ["", "", "", "", "Free time / last minute shopping", "", "", "", "", "", "", ""], ["", "", "", "12:30 PM", "Check out", "", "", "", "", "", "", ""], ["", "", "", "13:00 PM", "Get on bus, head to  Beijing Capital International Airport PEK Terminal 3", "", "", "", "", "", "", ""], ["", "", "", "17:17 PM", "TG 615 Departure time", "", "", "", "", "", "", ""]], BUILT='Fri 9 Oct 00:53', YEAR=2026;
+const THEME={1:{c:'#7B2FF7'},2:{c:'#D9480F'},3:{c:'#F59F00',band:'multi'},4:{c:'#12B886'},5:{c:'#C92A2A',c2:'#E0A800',band:'c2'},
+ 6:{c:'#1C7ED6'},7:{c:'#F08C00',g:'linear-gradient(135deg,#F08C00,#364FC7)'},8:{c:'#0CA678',c2:'#E64980',band:'c2'},9:{c:'#74C0FC'}};
+const MON={Jan:0,Feb:1,Mar:2,Apr:3,May:4,Jun:5,Jul:6,Aug:7,Sep:8,Oct:9,Nov:10,Dec:11};
+const e=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function ptime(v){v=(v||'').trim();if(!v)return null;const m=v.match(/(\d{1,2})[:.](\d{2})/);if(!m)return v;
+ let h=+m[1];const pm=/pm/i.test(v);if(h>=13){}else if(pm&&h<12)h+=12;else if(h===0||h===12)h=12;return String(h).padStart(2,'0')+':'+m[2]}
+function pdate(v){v=(v||'').trim();let m=v.match(/^(\d{1,2})[-\s\/]([A-Za-z]{3})/);if(m)return new Date(Date.UTC(YEAR,MON[m[2]],+m[1]));
+ m=v.match(/(\d{1,2})\/(\d{1,2})\/\d{2,4}/);if(m)return new Date(Date.UTC(YEAR,+m[1]-1,+m[2]));m=v.match(/\d{4}-(\d{2})-(\d{2})/);if(m)return new Date(Date.UTC(YEAR,+m[1]-1,+m[2]));return null}
+// rows: [B,C,D,E,F,G,H,I,J,K,L,N]  (M never present)
+function parse(rows){const days=[];let cur=null,last=null;rows.slice(0,91).forEach(r0=>{const r=r0.map(x=>(x||'').trim());
+ const b=Number(r[0]);if(r[0]&&Number.isInteger(b)&&b>=1&&b<=9){const d=pdate(r[1]);
+  cur={n:b,date:d?d.toISOString().slice(0,10):'',wd:r[2],title:r[3],route:r[4],hotel:r[5],book:r[6],lunch:r[7],snack:r[8],dinner:r[9],bus:r[10],stops:[]};days.push(cur);last=null;return}
+ if(!cur)return;if(r.every(x=>!x)){cur=null;last=null;return}
+ let t=ptime(r[3]);const food=r.slice(7,10).filter(Boolean),cn=r[11].replace(/^[^:：]*[:：]\s*/,'').trim(); // 'PEK T3: 北京…' -> '北京…'
+ if(t===null&&last){if(r[4])last.sub.push(r[4]);last.food.push(...food);if(cn&&!last.cn)last.cn=cn;return}
+ last=r[4]?{t:t||'',act:r[4],food,cn,sub:[]}:{t:t||'',act:food.join(' · '),food:[],cn,sub:[]}; // empty activity: use meal text as title
+ cur.stops.push(last)});return days}
+function csvRows(txt){const out=[];let row=[],f='',q=false;for(let i=0;i<txt.length;i++){const c=txt[i];
+ if(q){if(c=='"'){if(txt[i+1]=='"'){f+='"';i++}else q=false}else f+=c}else if(c=='"')q=true;else if(c==','){row.push(f);f=''}
+ else if(c=='\n'||c=='\r'){if(c=='\r'&&txt[i+1]=='\n')i++;row.push(f);out.push(row);row=[];f=''}else f+=c}
+ if(f||row.length){row.push(f);out.push(row)}
+ // First 11 cols = B..L by position. N = the column whose header (rows 1-5) is exactly 'Name for Map' (or '中文名'),
+ // else the last column that has any value. Columns in between are never read.
+ const isH=c=>/^(name for map|中文名)$/i.test((c||'').trim());
+ let hi=-1;out.slice(0,5).forEach(r=>{if(hi<0)hi=r.findIndex(isH)});
+ if(hi<11){hi=-1;out.slice(0,91).forEach(r=>r.forEach((c,i)=>{if(i>=11&&(c||'').trim()&&i>hi)hi=i}))}
+ return out.slice(0,91).map(r=>r.concat(Array(11).fill('')).slice(0,11).concat([hi>=11?(r[hi]||''):'']))}
+const QS=(new URLSearchParams(location.search).get('now')||'').replace(/ /g,'+')||null; // '+' in ?now= arrives as space
+const OFF=(()=>{const t=QS?Date.parse(QS):NaN;return isNaN(t)?0:t-Date.now()})(),nowMs=()=>Date.now()+OFF; // ?now= = fake start; keeps ticking
+const SH=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Shanghai',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hourCycle:'h23'});
+function shParts(ms){const o={};SH.formatToParts(ms).forEach(p=>o[p.type]=p.value);return{ymd:`${o.year}-${o.month}-${o.day}`,hm:`${o.hour}:${o.minute}`}}
+const fmt=d=>new Date(d).toLocaleString('en-GB',{timeZone:'Asia/Bangkok',weekday:'short',day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'});
+function stamp(D){// absolute start for each timed stop: Beijing +08:00, or +07:00 if text mentions BKK/Suvarnabhumi
+ D.forEach(d=>{
+  d.stops.forEach(s=>{if(!s.t||!d.date||!/^\d\d:\d\d$/.test(s.t))return;const tz=s.tz||(/BKK|Suvarnabhumi/i.test(s.act+' '+s.sub.join(' '))?7:8);
+   const[y,mo,da]=d.date.split('-').map(Number),[h,mi]=s.t.split(':').map(Number);s.ms=Date.UTC(y,mo-1,da,h-tz,mi);s.mid=Date.UTC(y,mo-1,da+1,-8,0);s.tzl=tz===7?' <span class="bkk">BKK time</span>':''})});
+ const all=D.flatMap(d=>d.stops.filter(s=>s.ms!=null).map(s=>(s.day=d,s))).sort((a,b)=>a.ms-b.ms);
+ all.forEach((s,i)=>s.end=Math.min(all[i+1]?all[i+1].ms:Infinity,s.mid));return all}
+function cd(ms){const m=Math.ceil(Math.max(0,ms)/60000);if(ms<60000)return 'starting now';if(m<60)return `in ${m} min`;if(m<1440)return `in ${Math.floor(m/60)} h ${String(m%60).padStart(2,'0')}`;const d=Math.floor(m/1440);return `in ${d} day${d>1?'s':''}`}
+let VIEW=null;
+function render(D,src,when){VIEW={D,src,when};const all=stamp(D);draw(true)}
+function draw(first){const{D,src,when}=VIEW,now=nowMs(),{ymd}=shParts(now),all=D.flatMap(d=>d.stops.filter(s=>s.ms!=null)).sort((a,b)=>a.ms-b.ms);
+ const cur=all.find(s=>s.ms<=now&&now<s.end)||null,nx=all.find(s=>s.ms>now)||null;
+ const inTrip=ymd>=D[0].date&&ymd<=D[D.length-1].date,ti=inTrip?Math.max(0,D.findIndex(d=>d.date===ymd)):0;
+ const th=n=>THEME[n]||{c:'#888888'},tint=h=>{const v=parseInt(h.slice(1),16);return `rgba(${v>>16},${v>>8&255},${v&255},.12)`};
+ const vars=n=>{const t=th(n);return `--c:${t.c};--t:${tint(t.c)};${t.c2?'--c2:'+t.c2+';':''}${t.g?'--g:'+t.g+';--tg:linear-gradient(90deg,'+tint('#F08C00')+','+tint('#364FC7')+');':''}`};
+ const nav=(s,big)=>{if(!s.cn)return '';const q=encodeURIComponent(s.cn);
+  const am=`iosamap://poi?sourceApplication=itin&name=${q}`,and=`androidamap://poi?sourceApplication=beijing2026&keywords=${q}&dev=0`,web=`https://uri.amap.com/search?keyword=${q}`;
+  const btn=`<a class="${big?'nav':''}" href="${am}" data-and="${and}" data-web="${web}" onclick="return amap(this)">Navigate</a>`;
+  return big?`<div class="navwrap">${btn}</div>`:`<div class="mini">${btn}</div>`};
+ const lastS=all[all.length-1],done=!nx&&!cur&&lastS&&now>=lastS.end;
+ const card=nx||cur||(done?lastS:all[0]),cday=D.find(d=>d.stops.includes(card)),tmr=nx&&!cur&&cday.date>ymd;
+ document.getElementById('chips').innerHTML=D.map(d=>`<a class="chip" style="${vars(d.n)}" href="#day-${d.n}" data-n="${d.n}">Day ${d.n}<small>${e(d.wd)} ${+d.date.slice(8)}</small></a>`).join('');
+ document.getElementById('next').style.cssText=vars(cday.n);document.getElementById('next').innerHTML=`<div class="lbl">${done?'Trip finished · last stop':nx?`<i class="dot"></i>Next · <span class="cd${nx.ms-now<=600000?' soon':''}">${cd(nx.ms-now)}</span>`:'Last stop'} · Day ${cday.n} ${e(cday.wd)}</div><div class="t">${tmr?(cday.date===shParts(now+864e5).ymd?'Tomorrow ':'Day '+cday.n+' · ')+e(card.t)+'</div><div class="en">'+e(card.act):e(card.t)+(card.tzl||'')+'</div><div class="en">'+e(card.act)}</div>${card.cn?`<div class="cn" lang="zh">${e(card.cn)}</div>`:''}${done?'':nav(card,1)}${cur&&cur!==card?`<p class="none">Now: ${e(cur.t)} ${e(cur.act)}</p>`:''}`;
+ document.getElementById('days').innerHTML=D.map(d=>{const m=[];if(d.hotel)m.push('🏨 <b>'+e(d.hotel)+'</b>');if(d.bus)m.push('🚌 '+e(d.bus));if(d.book)m.push('🎟 '+e(d.book));
+  const f=[['Lunch',d.lunch],['Snack',d.snack],['Dinner',d.dinner]].filter(x=>x[1]).map(x=>x[0]+': '+e(x[1]));if(f.length)m.push('🍜 '+f.join(' · '));
+  return `<section class="card day" id="day-${d.n}" style="${vars(d.n)}"><div class="dh ${th(d.n).band||''}"><h2>Day ${d.n} · ${e(d.wd)} ${+d.date.slice(8)} Oct · ${e(d.title)}</h2><div class="meta">${e(d.route)}<br>${m.join('<br>')}</div></div><ol>${d.stops.map(s=>{
+  const isNow=s===cur,past=s.ms!=null?s.end<=now:(d.date<ymd),cls=isNow?'now':past?'past':(s===nx?'nx':'');
+  return `<li class="${cls}"><div class="lc"><span class="tm">${e(s.t||'·')}${s.tzl||''}</span>${isNow?' <span class="tag"><i class="dot pulse"></i>NOW</span>':''}${s===nx?' <span class="tag nxt">Next</span>':''} ${e(s.act)}${s.sub.length?'<ul class="sub">'+s.sub.map(x=>'<li>'+e(x)+'</li>').join('')+'</ul>':''}${s.food.length?'<div class="food">🍽 '+s.food.map(e).join(' · ')+'</div>':''}${s.cn?'<div class="licn" lang="zh">'+e(s.cn)+'</div>':''}${nav(s,0)}</div></li>`}).join('')}</ol></section>`}).join('');
+ document.getElementById('live').textContent='Live · Beijing time '+shParts(now).hm;document.getElementById('upd').textContent=`Updated ${when} (Bangkok) · ${src} copy · Beijing now ${shParts(now).hm}`;
+ window._D=D;window._nd=cday;window._ti=ti;fillLines();
+ const hn=hashN();if(hn)go(hn,0,!first);else{go(D[ti].n,0,!first);if(first&&!inTrip)scrollTo(0,0)}}
+// Timeline line fill: past days full, future days empty; the day with now fills down to the centre of the Now dot.
+function fillLines(){document.querySelectorAll('#days ol').forEach(ol=>{let f=ol.querySelector(':scope>.tl-fill');if(!f){f=document.createElement('span');f.className='tl-fill';ol.prepend(f)}
+ const lis=[...ol.children].filter(x=>x.tagName==='LI'),cur=lis.find(l=>l.classList.contains('now')),past=lis.filter(l=>l.classList.contains('past'));let h=0;
+ if(lis.length&&past.length===lis.length)h=ol.clientHeight;
+ else if(cur){const b=getComputedStyle(cur,'::before');h=cur.getBoundingClientRect().top-ol.getBoundingClientRect().top-ol.clientTop+parseFloat(b.top)+parseFloat(b.height)/2}
+ else if(past.length){const l=past[past.length-1];h=l.offsetTop+l.offsetHeight}
+ const H=Math.max(0,h),g=[];past.forEach(l=>{const a=l.offsetTop+11,b=a+14;if(a<H)g.push(`#000 ${a}px,transparent ${a}px,transparent ${b}px,#000 ${b}px`)});
+ const m=g.length?`linear-gradient(#000 0,${g.join(',')},#000 100%)`:'none';f.style.webkitMaskImage=f.style.maskImage=m;f.style.height=H+'px'})}
+addEventListener('resize',fillLines);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fillLines);
+// re-evaluate Now/Next every 30s (aligned to :00/:30) and right away when the phone wakes
+const tick=()=>VIEW&&draw(false);setTimeout(()=>{tick();setInterval(tick,30000)},30000-(nowMs()%30000)+50);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)tick()});addEventListener('focus',tick);addEventListener('pageshow',tick);
+// Navigate: open the Amap app via its deep link. Never move this page to http(s).
+// If the page goes hidden / loses focus within ~1.8s, the app opened -> do nothing. Otherwise show a small
+// "Open Amap website" link (new tab) under the button; it disappears on the next render.
+window.openDeep=window.openDeep||(u=>{location.href=u}); // custom scheme only (iosamap:// / androidamap://)
+function amap(a){const wrap=a.parentElement,scope=a.closest('#next,#days,#sheet'),web=a.dataset.web;wrap.querySelectorAll('.amweb').forEach(x=>x.remove());let opened=false,t;
+ const off=()=>{clearTimeout(t);document.removeEventListener('visibilitychange',vis);removeEventListener('pagehide',bye);removeEventListener('blur',bye)};
+ const bye=()=>{opened=true;off()},vis=()=>{if(document.hidden)bye()};
+ document.addEventListener('visibilitychange',vis);addEventListener('pagehide',bye);addEventListener('blur',bye);
+ t=setTimeout(()=>{off();if(opened||document.hidden)return;
+  // the card may have re-rendered meanwhile (focus/tick): find the same button again
+  let w=wrap;if(!w.isConnected){const c=scope&&scope.isConnected?[...scope.querySelectorAll('a[data-web]')].find(x=>x.dataset.web===web):null;w=c&&c.parentElement}if(!w)return;
+  const l=document.createElement('a');l.className='amweb';l.href=web;l.target='_blank';l.rel='noopener';
+  l.textContent='Open Amap website';w.appendChild(l)},1800);
+ try{openDeep(/Android/i.test(navigator.userAgent)?a.dataset.and:a.getAttribute('href'))}catch(_){}
+ return false}
+function hashN(){const m=location.hash.match(/^#day-(\d+)$/);return m?+m[1]:null}
+function go(n,smooth,quiet){const el=document.getElementById('day-'+n);if(!el)return;document.querySelectorAll('.day').forEach(x=>x.classList.toggle('hl',x===el));
+ document.querySelectorAll('.chip').forEach(c=>{const on=c.dataset.n==n;c.classList.toggle('on',on);if(on)c.scrollIntoView({inline:'center',block:'nearest'})});
+ if(!quiet)el.scrollIntoView({behavior:smooth?'smooth':'auto'})}
+addEventListener('hashchange',()=>go(hashN(),1));
+bToday.onclick=()=>{const n=_D[_ti].n;history.replaceState(null,'','#day-'+n);go(n,1)};
+bNext.onclick=()=>{history.replaceState(null,'',location.pathname+location.search);go(_nd.n,0);scrollTo({top:0,behavior:'smooth'})};
+// 1) baked or cached copy immediately, 2) try live CSV
+let cached=null;try{cached=JSON.parse(localStorage.getItem('itin-live')||'null')}catch(_){}
+if(cached&&cached.rows&&parse(cached.rows).length)render(parse(cached.rows),'cached',fmt(cached.at));else render(parse(BAKED),'built',BUILT);
+if(/^https:/.test(CSV_URL)){const ctl=new AbortController();setTimeout(()=>ctl.abort(),8000);
+ fetch(CSV_URL+(CSV_URL.includes('?')?'&':'?')+'t='+Date.now(),{signal:ctl.signal,cache:'no-store'}).then(r=>r.ok?r.text():Promise.reject())
+ .then(t=>{const rows=csvRows(t),D=parse(rows);if(!D.length)return;const at=Date.now();try{localStorage.setItem('itin-live',JSON.stringify({rows,at}))}catch(_){}render(D,'live',fmt(at))}).catch(()=>{})}
+const banner=(cls,txt)=>{const b=document.getElementById('banner');b.innerHTML=`<div class="${cls}">${txt}</div>`;document.querySelector('main').prepend(b)};
+if(/ Line\//.test(navigator.userAgent))banner('line','Tap ⋯ then Open in Safari'); // LINE in-app browser: replaces add-to-home steps
+else if(!TRAILTEST&&'serviceWorker' in navigator){const first=!navigator.serviceWorker.controller; // swready
+ navigator.serviceWorker.register('sw.js',{scope:'./'}).then(()=>navigator.serviceWorker.ready).then(()=>{if(first&&!localStorage.getItem('itin-offline')){localStorage.setItem('itin-offline','1');banner('ok','Ready to use offline ✓');setTimeout(()=>document.getElementById('banner').innerHTML='',8000)}}).catch(()=>{})}
+// ---- Family map (lazy: nothing below loads Firebase/Leaflet until the tab is opened) ----
+const FB={apiKey:'AIzaSyDGfga8FCCxo2LRKfUi_W8zOh7PyKHXTK4',authDomain:'china-trip-2026-b2afb.firebaseapp.com',projectId:'china-trip-2026-b2afb',
+ appId:'1:333226521212:web:d86d90558d7e6d7c8a8ff9',databaseURL:'https://china-trip-2026-b2afb-default-rtdb.asia-southeast1.firebasedatabase.app'};
+const FBU='https://www.gstatic.com/firebasejs/10.14.1/',LFU='https://unpkg.com/leaflet@1.9.4/dist/leaflet';
+// ======== PALETTE (v1.7, Steve's final kit colours) ========
+// 20 solids in Steve's order, then 8 gradients stored as short tokens g1-g8 (DB rule: <= 9 chars). Grey is reserved for 'last seen'.
+// Letter colour is fixed per colour (INK: 'b' = #111, 'w' = #fff); anything not listed falls back to the auto-picker (inkC).
+const PAL=['#FF1744','#2962FF','#76FF03','#FF4FD8','#00E5FF','#FF6D00','#AA00FF','#FFEA00','#00C853','#111111',
+  '#0D47A1','#1DE9B6','#FFC400','#7C4DFF','#40C4FF','#1B5E20','#F50057','#FFAB40','#880E4F','#E040FB',
+  'g1','g2','g3','g4','g5','g6','g7','g8'],
+ INK={'#FF1744':'b','#2962FF':'w','#76FF03':'b','#FF4FD8':'b','#00E5FF':'b','#FF6D00':'b','#AA00FF':'w','#FFEA00':'b','#00C853':'b','#111111':'w',
+  '#0D47A1':'w','#1DE9B6':'b','#FFC400':'b','#7C4DFF':'w','#40C4FF':'b','#1B5E20':'w','#F50057':'b','#FFAB40':'b','#880E4F':'w','#E040FB':'b',
+  g1:'b',g2:'b',g3:'b',g4:'b',g5:'b',g6:'b',g7:'b',g8:'b'},
+ GRAD={g1:['#FF1744','#FFEA00'],g2:['#FF4FD8','#FF6D00'],g3:['#76FF03','#00E5FF'],g4:['#00C853','#FFEA00'],
+  g5:['#40C4FF','#FF4FD8'],g6:['#E040FB','#00E5FF'],g7:['#FF6D00','#00E5FF'],g8:['#F50057','#FFAB40']},
+ PALN=['Red','Blue','Lime','Hot pink','Cyan','Orange','Purple','Yellow','Green','Black','Navy','Mint','Gold','Violet','Sky','Forest','Fuchsia','Peach','Maroon','Lavender',
+  'Red to yellow','Hot pink to orange','Lime to cyan','Green to yellow','Sky to hot pink','Lavender to cyan','Orange to cyan','Fuchsia to peach'],
+// ======== end of palette ========
+ // Every solid an earlier version could have stored (v1.5-v1.6.3). Each shows as the nearest current solid by hue (computed below).
+ OLDP=['#1C7ED6','#D9480F','#2F9E44','#C2255C','#7048E8','#0B7285','#A65A00','#4D7C0F','#9C36B5','#3B5BDB','#C92A2A','#495057',
+  '#E53935','#F57C00','#C49000','#2E7D32','#00897B','#1E88E5','#3949AB','#8E24AA','#D81B60','#6D4C41','#E32C27','#B95E00','#987000','#008577','#1879CE',
+  '#B71C1C','#D44417','#827717','#50832C','#00838F','#0277BD','#5E35B1','#AD1457','#1A237E','#212121','#D32F2F','#C25400','#8D6E00','#00796B','#1976D2'],
+ cssC=c=>GRAD[c]?`linear-gradient(135deg,${GRAD[c][0]},${GRAD[c][1]})`:c, // token -> CSS background
+ normC=c=>{c=String(c||'');if(/^g[1-8]$/i.test(c))return c.toLowerCase();c=c.toUpperCase();return OLDC[c]||c},GREY='#9CA3AF',FRESH=120000,KEEP=3600000;
+// ---- colour maths: parse any CSS colour, WCAG contrast, letter colour, nearest-by-hue ----
+const RGB={};function rgbOf(c){if(RGB[c])return RGB[c];let m=String(c).match(/^#([0-9a-f]{3,8})$/i),r=[136,136,136];
+ if(m){let h=m[1];if(h.length<6)h=h.split('').map(x=>x+x).join('');r=[0,2,4].map(i=>parseInt(h.substr(i,2),16))}
+ else try{const x=document.createElement('canvas').getContext('2d');x.fillStyle='#888';x.fillStyle=c;const v=x.fillStyle;
+  r=v[0]==='#'?[1,3,5].map(i=>parseInt(v.substr(i,2),16)):v.match(/[\d.]+/g).slice(0,3).map(Number)}catch(_){}
+ return RGB[c]=r}
+const lum=c=>{const[r,g,b]=rgbOf(c).map(v=>{v/=255;return v<=.04045?v/12.92:((v+.055)/1.055)**2.4});return .2126*r+.7152*g+.0722*b};
+const contrast=(a,b)=>{const x=lum(a),y=lum(b);return(Math.max(x,y)+.05)/(Math.min(x,y)+.05)};
+const INKC={};function inkC(c){if(INKC[c])return INKC[c];const f=INK[c]||INK[String(c).toUpperCase()];if(f)return INKC[c]=f==='w'?'#fff':'#111';
+ const st=GRAD[c]||[c]; // fallback: whichever of #111/#fff contrasts more (worst stop)
+ const w=Math.min(...st.map(s=>contrast(s,'#ffffff'))),d=Math.min(...st.map(s=>contrast(s,'#111111')));return INKC[c]=w>=d?'#fff':'#111'}
+function hsl(c){const[r,g,b]=rgbOf(c).map(v=>v/255),mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2,d=mx-mn;let h=0;
+ if(d){h=mx===r?((g-b)/d)%6:mx===g?(b-r)/d+2:(r-g)/d+4;h=(h*60+360)%360}return{h,s:d?d/(1-Math.abs(2*l-1)):0,l}}
+function nearC(c){const o=hsl(c),sol=PAL.filter(x=>x[0]==='#').map(x=>({x,...hsl(x)}));const grey=o.s<.15||o.l<.1;
+ const pool=grey?sol.filter(p=>p.s<.15||p.l<.1):sol.filter(p=>!(p.s<.15||p.l<.1));let best=null,bs=1e9;
+ (pool.length?pool:sol).forEach(p=>{const dh=Math.min(Math.abs(p.h-o.h),360-Math.abs(p.h-o.h)),sc=(grey?0:dh)+40*Math.abs(p.l-o.l);if(sc<bs){bs=sc;best=p.x}});return best}
+const OLDC={};OLDP.forEach(h=>{if(!PAL.includes(h))OLDC[h]=nearC(h)});
+const STANDALONE=(window.matchMedia&&matchMedia('(display-mode: standalone)').matches)||navigator.standalone===true;
+const $=id=>document.getElementById(id),fam={};
+const tabsOn=()=>!!LS.get('fam-k')||STANDALONE||!!fam.keepTab; // keepTab: a code was rejected this visit, keep the box reachable
+const isMap=()=>document.body.classList.contains('map');
+// Map screen: full-screen overlay over the itinerary (its scroll position is kept). Opening pushes a history entry so the
+// phone's Back gesture closes it; the '← Itinerary' pill goes back through history when we pushed.
+function openMap(push){if(isMap())return;document.body.classList.add('map');
+ if(push!==false){try{history.pushState({fam:1},'');fam.pushed=true}catch(_){}}famOpen();setTimeout(()=>fam.map&&fam.map.invalidateSize(),60)}
+function closeMap(fromPop){if(!isMap())return;if(fam.sheet)closeSheet();swOpen(false);document.body.classList.remove('map');
+ if(!fromPop&&fam.pushed&&history.state&&history.state.fam){fam.pushed=false;history.back()}}
+function setTab(t){t==='map'?openMap():closeMap()}
+$('backBtn').onclick=()=>{if(fam.pushed&&history.state&&history.state.fam)history.back();else closeMap()};
+addEventListener('popstate',ev=>{if(ev.state&&ev.state.fam){if(tabsOn()){fam.pushed=true;openMap(false)}}else{fam.pushed=false;closeMap(true)}});
+if(history.state&&history.state.fam)try{history.replaceState(null,'')}catch(_){} // reloaded while the map was open
+function refreshTabs(){$('fab').hidden=!tabsOn();if(!tabsOn())closeMap()}
+// Floating button: drag anywhere, snaps to the nearer side on release, remembered per phone; < 8px of movement = tap.
+(()=>{const b=$('fab'),M=16,K='fam-fab';let st=null;
+ const ins=()=>{const c=getComputedStyle($('safeProbe'));return{t:parseFloat(c.paddingTop)||0,b:parseFloat(c.paddingBottom)||0}};
+ const clampT=t=>{const i=ins();return Math.max(i.t+M,Math.min(innerHeight-56-i.b-24,t))};
+ function place(side,top){top=clampT(top);b.style.top=top+'px';b.style.bottom='auto';b.style.right='auto';b.style.left=(side==='l'?M:innerWidth-56-M)+'px';return top}
+ function load(){let p=null;try{p=JSON.parse(LS.get(K)||'null')}catch(_){}if(p&&typeof p.top==='number')place(p.side==='l'?'l':'r',p.top)}
+ load();addEventListener('resize',load);
+ b.addEventListener('pointerdown',ev=>{if(ev.button>0)return;const r=b.getBoundingClientRect();st={id:ev.pointerId,x:ev.clientX,y:ev.clientY,l:r.left,t:r.top,moved:false};
+  b.classList.remove('snap');try{b.setPointerCapture(ev.pointerId)}catch(_){}});
+ b.addEventListener('pointermove',ev=>{if(!st||ev.pointerId!==st.id)return;const dx=ev.clientX-st.x,dy=ev.clientY-st.y;
+  if(!st.moved&&Math.hypot(dx,dy)<8)return;st.moved=true;
+  b.style.right='auto';b.style.bottom='auto';b.style.left=Math.max(0,Math.min(innerWidth-56,st.l+dx))+'px';b.style.top=clampT(st.t+dy)+'px'});
+ const end=ev=>{if(!st||ev.pointerId!==st.id)return;const s0=st;st=null;if(!s0.moved)return;fam.fabDrag=Date.now();
+  const r=b.getBoundingClientRect(),side=r.left+28<innerWidth/2?'l':'r';b.classList.add('snap');LS.set(K,JSON.stringify({side,top:place(side,r.top)}))};
+ b.addEventListener('pointerup',end);b.addEventListener('pointercancel',end);
+ b.addEventListener('click',()=>{if(fam.fabDrag&&Date.now()-fam.fabDrag<500)return;openMap()})})();
+refreshTabs();
+const msg=t=>$('famMsg').textContent=t||'';
+// Stored colour as-is: hex, gradient token, or any valid CSS colour; otherwise a neutral dark.
+const safeC=c=>{c=String(c||'').trim();if(/^#[0-9a-f]{3,8}$/i.test(c))return OLDC[c.toUpperCase()]||c; // older palettes' hexes show as the nearest current colour
+if(/^g[1-8]$/i.test(c))return c.toLowerCase();
+ return /^[a-z0-9#(),.%\s-]+$/i.test(c)&&window.CSS&&CSS.supports&&CSS.supports('color',c)?c:'#424242'};
+const ago=ms=>ms<60000?'just now':ms<3600000?Math.floor(ms/60000)+' min ago':Math.floor(ms/3600000)+' h ago';
+const seen=ms=>{const m=Math.round(ms/60000);return 'Last seen '+(m>=60?'1 h ago':Math.max(2,m)+' min ago')};
+const distM=(a,b)=>{const R=6371e3,r=Math.PI/180,dl=(b.lat-a.lat)*r,dn=(b.lng-a.lng)*r,x=Math.sin(dl/2)**2+Math.cos(a.lat*r)*Math.cos(b.lat*r)*Math.sin(dn/2)**2;return 2*R*Math.asin(Math.sqrt(x))};
+// One id per phone, kept in localStorage: closing and reopening the page updates the same entry (no duplicates).
+function myId(){if(fam.id)return fam.id;let id=LS.get('fam-id');if(!id){id='p'+Array.from(crypto.getRandomValues(new Uint8Array(12)),b=>(b%36).toString(36)).join('');LS.set('fam-id',id)}return fam.id=id}
+function hashStr(s){let h=2166136261;for(const ch of s){h^=ch.codePointAt(0);h=Math.imul(h,16777619)}return h>>>0}
+// Colour: chosen + stored per phone. Until chosen, default = first colour (in order) nobody else on the map uses
+// (live or last seen), solids before gradients; if all 28 are taken, the least-used one.
+function takenBy(){const me=fam.id||LS.get('fam-id'),m={};(fam.list||[]).forEach(p=>{if(p.id===me)return;const c=normC(p.color);(m[c]=m[c]||[]).push(p)});return m}
+function defColor(){const t=takenBy();let best=PAL[0],bn=1e9;PAL.forEach(c=>{const n=(t[c]||[]).length;if(n<bn){bn=n;best=c}});return best}
+function myColor(){const c=normC(LS.get('fam-color'));return PAL.includes(c)?c:defColor()}
+function colUI(){const c=myColor(),n=($('nameIn').value.trim()||LS.get('fam-name')||''),t=n?tag2(n):'';
+ ['colBtn','colBtn2'].forEach(id=>{const b=$(id);b.style.background=cssC(c);b.style.color=inkC(c);b.textContent=t});$('sasName').textContent=LS.get('fam-name')||n;
+ if(!$('swatches').hidden)renderSw()}
+function renderSw(){const t=takenBy(),mine=myColor();
+ const h=PAL.map((c,i)=>{const o=t[c];return `<button type="button" class="swb${c===mine?' on':''}" data-c="${c}" style="background:${cssC(c)};color:${inkC(c)}" aria-pressed="${c===mine}" aria-label="${PALN[i]}${o?', used by '+e(o.map(p=>p.name).join(', ')):''}">${o?e(lab(o[0])):''}</button>`}).join('');
+ if(h===fam.swHtml)return;fam.swHtml=h;$('swrow').innerHTML=h;swEnd();$('swrow').querySelectorAll('.swb').forEach(b=>b.onclick=()=>pickColor(b.dataset.c))}
+function swOpen(on){if(!$('swatches'))return;$('swatches').hidden=!on;fam.swHtml=null;['colBtn','colBtn2'].forEach(id=>$(id).setAttribute('aria-expanded',String(!!on)));
+ if(on){renderSw();const r=$('swrow'),b=r.querySelector('.swb.on');if(b)r.scrollLeft=Math.max(0,b.offsetLeft-(r.clientWidth-44)/2);swEnd()}} // selected swatch scrolled into view
+function swEnd(){const r=$('swrow');$('swatches').classList.toggle('end',r.scrollLeft+r.clientWidth>=r.scrollWidth-2)} // hide the right-edge fade at the end
+$('swrow').addEventListener('scroll',swEnd,{passive:true});
+function pickColor(c){LS.set('fam-color',c);swOpen(false);colUI();if(fam.sharing&&fam.last)writePos(fam.last)} // sharing: send the new colour now
+$('colBtn').onclick=$('colBtn2').onclick=()=>swOpen($('swatches').hidden);
+function fmtCode(v){const d=v.replace(/\D/g,'').slice(0,10);return [d.slice(0,3),d.slice(3,6),d.slice(6)].filter(Boolean).join(' ')}
+$('codeIn').addEventListener('input',ev=>{ev.target.value=fmtCode(ev.target.value)});
+$('joinBtn').onclick=()=>{const d=$('codeIn').value.replace(/\D/g,'');if(d.length!==10){$('famBad').textContent='Enter all 10 digits';$('famBad').hidden=false;return}
+ LS.set('fam-k',d);fam.denied=false;$('codeIn').value='';refreshTabs();famStart()};
+function setAmber(on){fam.stale=on;$('famAmber').hidden=!on;drawPeople()}
+function armTimer(){clearTimeout(fam.timer);fam.timer=setTimeout(()=>{if(!fam.conn)setAmber(true)},15000)}
+function unsubAll(){(fam.unsubs||[]).forEach(u=>{try{u()}catch(_){}});fam.unsubs=[];clearTimeout(fam.timer)}
+function famOpen(){if(fam.code&&fam.code===LS.get('fam-k')){fam.map&&setTimeout(()=>fam.map.invalidateSize(),60);return}famStart()}
+function loadLeaflet(){if(window.L)return Promise.resolve();return new Promise((ok,no)=>{const l=document.createElement('link');l.rel='stylesheet';l.href=LFU+'.css';document.head.appendChild(l);
+ const s=document.createElement('script');s.src=LFU+'.js';s.onload=ok;s.onerror=no;document.head.appendChild(s)})}
+function initMap(){if(fam.map||!window.L)return;fam.map=L.map('fmap',{maxZoom:19}).setView([39.9139,116.3917],13);
+ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© OpenStreetMap'}).addTo(fam.map);fam.layer=L.layerGroup().addTo(fam.map);
+ const Me=L.Control.extend({options:{position:'topright'},onAdd(){const b=L.DomUtil.create('button','mebtn');b.type='button';b.textContent='Me';b.setAttribute('aria-label','Centre the map on me');
+  L.DomEvent.disableClickPropagation(b);L.DomEvent.on(b,'click',centerMe);return b}});fam.map.addControl(new Me());
+ fam.map.on('zoomend',drawMarkers);drawPeople();
+ if(!fam.fitted&&navigator.permissions&&navigator.geolocation)navigator.permissions.query({name:'geolocation'}).then(r=>{ // no prompt: only if already allowed
+  if(r.state==='granted')navigator.geolocation.getCurrentPosition(p=>{if(!fam.fitted&&!(fam.list||[]).length)fam.map.setView([p.coords.latitude,p.coords.longitude],15)},()=>{},{maximumAge:60000,timeout:10000})}).catch(()=>{})}
+function showMe(c){if(!fam.map)return;if(!fam.meMk)fam.meMk=L.circleMarker([c.lat,c.lng],{radius:8,weight:3,color:'#fff',fillColor:'#1971C2',fillOpacity:1,interactive:false}).addTo(fam.map);else fam.meMk.setLatLng([c.lat,c.lng])}
+function centerMe(){if(fam.last){showMe(fam.last);fam.map.setView([fam.last.lat,fam.last.lng],Math.max(fam.map.getZoom(),16));return}
+ if(!navigator.geolocation){msg("This phone can't find your location here.");return}
+ navigator.geolocation.getCurrentPosition(p=>{const c={lat:p.coords.latitude,lng:p.coords.longitude};showMe(c);fam.map.setView([c.lat,c.lng],16)},
+  ()=>msg('Location is turned off for this browser. Allow it in Settings.'),{enableHighAccuracy:true,maximumAge:30000,timeout:20000})}
+async function famStart(){const code=LS.get('fam-k');unsubAll();trClear();fam.code=code;fam.people={};fam.conn=false;fam.offOk=false;$('famBad').hidden=true;$('famAmber').hidden=true;fam.stale=false;
+ if(!code){$('famCode').hidden=false;$('famMain').hidden=true;$('famBad').hidden=!fam.denied;return}
+ $('famCode').hidden=true;$('famMain').hidden=false;$('nameIn').value=LS.get('fam-name')||'';drawPeople();shareUI();armTimer();
+ loadLeaflet().then(initMap).catch(()=>{if(!fam.map)$('fmap').innerHTML='<p class="note pad">The map picture could not load. The name chips above still work.</p>'});
+ try{const[A,D]=DEMO?[{initializeApp:()=>({})},demoDB()]:await Promise.all([import(FBU+'firebase-app.js'),import(FBU+'firebase-database.js')]);if(fam.code!==code)return;
+  fam.D=D;fam.app=fam.app||A.initializeApp(FB);fam.db=fam.db||D.getDatabase(fam.app);
+  fam.unsubs.push(D.onValue(D.ref(fam.db,'.info/connected'),s=>{fam.conn=!!s.val();if(fam.conn){clearTimeout(fam.timer);setAmber(false);cleanOld()}else armTimer()}));
+  fam.unsubs.push(D.onValue(D.ref(fam.db,'.info/serverTimeOffset'),s=>{fam.off=+s.val()||0;fam.offOk=true;cleanOld()}));
+  fam.unsubs.push(D.onValue(D.ref(fam.db,`trips/${code}/people`),s=>{fam.people=s.val()||{};drawPeople();cleanOld()},()=>badCode()));
+  const iv=setInterval(cleanOld,60000);fam.unsubs.push(()=>clearInterval(iv));
+ }catch(_){/* Firebase script blocked/unreachable: the 15s timer shows the amber line */}}
+// Self-cleaning: any client with the map loaded deletes entries whose server time t is more than 60 min old (server clock via
+// .info/serverTimeOffset; only once connected, so a wrong phone clock can't delete fresh spots).
+function cleanOld(){if(!fam.D||!fam.db||!fam.code||!fam.conn||!fam.offOk)return;const now=Date.now()+(fam.off||0);
+ for(const[id,p]of Object.entries(fam.people||{})){const t=p&&+p.t;if(t&&now-t>KEEP)fam.D.remove(fam.D.ref(fam.db,`trips/${fam.code}/people/${id}`)).catch(()=>{})}}
+// Denied by the database = wrong code (never the amber/no-connection path): wipe it, show the box again.
+function badCode(){stopShare();unsubAll();LS.del('fam-k');fam.code=null;trClear();fam.denied=true;fam.keepTab=true;fam.stale=false;$('famAmber').hidden=true;
+ $('famBad').textContent='Code not recognised';$('famBad').hidden=false;$('famCode').hidden=false;$('famMain').hidden=true;refreshTabs()}
+// Cheap background check of a saved code (REST, no SDK, doesn't touch the itinerary). Only an explicit 401/403 counts as wrong;
+// offline / timeout / other errors leave the code alone.
+function checkCode(code){if(!code||!window.fetch)return;const ac=window.AbortController?new AbortController():null;const to=setTimeout(()=>ac&&ac.abort(),12000);
+ fetch(`${FB.databaseURL}/trips/${code}/people.json?shallow=true`,{cache:'no-store',signal:ac&&ac.signal}).then(r=>{clearTimeout(to);
+  if((r.status===401||r.status===403)&&LS.get('fam-k')===code)badCode()}).catch(()=>clearTimeout(to))}
+function walkLinks(p){const n=encodeURIComponent(p.name); // raw WGS-84 from the DB; dev=1 lets Amap apply the China offset
+ return{ios:`iosamap://path?sourceApplication=beijing2026&dlat=${p.lat}&dlon=${p.lng}&dname=${n}&dev=1&t=2`,
+  // Android: documented form is amapuri://route/plan/ (lbs.amap.com amap-mobile/guide/android/route)
+  and:`amapuri://route/plan/?sourceApplication=beijing2026&dlat=${p.lat}&dlon=${p.lng}&dname=${n}&dev=1&t=2`,
+  web:`https://uri.amap.com/navigation?to=${p.lng},${p.lat},${n}&mode=walk&coordinate=wgs84&callnative=1`}}
+const tag2=n=>{const a=Array.from(String(n||'?').trim());return (a[0]||'?').toUpperCase()+(a[1]||'')};
+// Labels for the names currently shown: default = tag2. When 2+ names share a default label, each uses its first letter plus
+// the first letter where it differs from the other clashing names (Dan+Dayton -> Dn, Dy). Case-insensitive, spaces ignored.
+// Identical names or a prefix with no differing letter keep the default (colour tells them apart).
+function makeTags(list){const out={},groups={};
+ list.forEach(p=>{const d=tag2(p.name),k=d.toLowerCase();(groups[k]=groups[k]||[]).push({p,d,n:Array.from(String(p.name||'').toLowerCase().replace(/\s+/g,''))})});
+ Object.values(groups).forEach(g=>g.forEach(x=>{let lab=x.d;
+  if(g.length>1){let idx=0,ok=true;
+   for(const y of g){if(y===x)continue;let i=1;while(i<x.n.length&&i<y.n.length&&x.n[i]===y.n[i])i++;
+    if(i>=x.n.length||i>=y.n.length){ok=false;break}idx=Math.max(idx,i)}   // identical / prefix: no differing letter -> default
+   if(ok&&idx>=1)lab=x.d.charAt(0)+x.n[idx]}
+  out[x.p.id]=lab}));return out}
+const lab=p=>(fam.tags&&fam.tags[p.id])||tag2(p.name);
+function liveList(){const now=Date.now()+(fam.off||0),list=[];
+ for(const[id,p]of Object.entries(fam.people||{})){if(!p||typeof p.lat!=='number'||typeof p.lng!=='number')continue;const age=Math.max(0,now-(+p.t||0));if(age>KEEP)continue; // kept 60 min, then hidden (and cleaned)
+  list.push({id,name:String(p.name||'?'),color:safeC(p.color),lat:p.lat,lng:p.lng,age})}
+ // Same name (trimmed, case-insensitive, spaces ignored): show only the newest; this phone's own entry wins while sharing.
+ // Runs before initials and colour logic; hidden duplicates stay in the DB (the 60-min cleanup removes them).
+ const me=fam.sharing?(fam.id||LS.get('fam-id')):null,best={};
+ list.forEach(p=>{const k=p.name.toLowerCase().replace(/\s+/g,''),o=best[k];
+  if(!o||(o.id!==me&&(p.id===me||p.age<o.age)))best[k]=p});
+ return Object.values(best).sort((a,b)=>a.name.localeCompare(b.name))}
+const isOld=p=>p.age>=FRESH,dotK=p=>fam.stale||isOld(p)?GREY:p.color,dotC=p=>cssC(dotK(p))+';color:'+inkC(dotK(p)); // grey = last seen (or no connection)
+function drawPeople(){if(!$('pchips'))return;const list=liveList(),me=LS.get('fam-id');fam.list=list;fam.tags=makeTags(list);
+ const h=list.length?list.map(p=>`<button class="pchip${fam.stale||isOld(p)?' old':''}" data-id="${e(p.id)}"><i class="tg" style="background:${dotC(p)}">${e(lab(p))}</i><span>${e(p.name)}${p.id===me?' (you)':''}${isOld(p)?`<small>${seen(p.age)}</small>`:''}</span></button>`).join('')
+  :'<p class="note" style="margin:6px 2px">No one is sharing right now.</p>';
+ if(h!==fam.chipsHtml){fam.chipsHtml=h;$('pchips').innerHTML=h;
+  $('pchips').querySelectorAll('.pchip').forEach(b=>b.onclick=()=>{const p=(fam.list||[]).find(x=>x.id===b.dataset.id);if(p&&fam.map)fam.map.panTo([p.lat,p.lng]);openSheet([b.dataset.id])})}
+ if(fam.sheet)renderSheet();colUI();shareUI();
+ if(fam.map&&!fam.fitted&&list.length){fam.fitted=true;if(list.length===1)fam.map.setView([list[0].lat,list[0].lng],16);else fam.map.fitBounds(L.latLngBounds(list.map(p=>[p.lat,p.lng])),{padding:[44,44],maxZoom:16})}
+ drawMarkers();trUpdate()}
+// small grid cluster: dots closer than R px merge into a numbered circle
+function drawMarkers(){if(!fam.map||!window.L||!fam.layer)return;fam.layer.clearLayers();const R=36,groups=[];
+ (fam.list||[]).forEach(p=>{const pt=fam.map.latLngToLayerPoint([p.lat,p.lng]),g=groups.find(g=>g.pt.distanceTo(pt)<R);if(g)g.m.push(p);else groups.push({pt,m:[p]})});
+ groups.forEach(g=>{if(g.m.length===1){const p=g.m[0],f=fam.stale||isOld(p);
+   const mk=L.marker([p.lat,p.lng],{title:p.name,icon:L.divIcon({className:'',html:`<div class="fd${f?' old':''}" style="background:${dotC(p)}">${e(lab(p))}</div>`,iconSize:[38,38],iconAnchor:[19,19]})});
+   mk.on('click',()=>openSheet([p.id]));fam.layer.addLayer(mk);return}
+  const b=L.latLngBounds(g.m.map(p=>[p.lat,p.lng])),c=b.getCenter(),ids=g.m.map(p=>p.id);
+  const mk=L.marker(c,{title:g.m.map(p=>p.name).join(', '),icon:L.divIcon({className:'',html:`<div class="fc">${g.m.length}</div>`,iconSize:[44,44],iconAnchor:[22,22]})});
+  mk.on('click',()=>{const z=fam.map.getZoom(),mz=fam.map.getMaxZoom();
+   if(z>=mz)openSheet(ids);else if(b.getNorthEast().equals(b.getSouthWest()))fam.map.setView(c,mz);else fam.map.fitBounds(b,{padding:[70,70],maxZoom:mz})});
+  fam.layer.addLayer(mk)})}
+// ---- Movement trails: each phone keeps, in memory only, the spots it has received per person while the map is subscribed,
+// and draws them as fading dots under the pins. Nothing new is stored anywhere (DB, localStorage). Older versions just don't draw them.
+// Kept: the last 5 min OR 300 m of path back from the newest kept spot, whichever is shorter; max 60 spots per person.
+// A spot is kept only if >= max(15 m, reported accuracy) from the last kept spot AND from the centre of the spots seen since
+// (stops standing-still jitter); dropped if accuracy (when a record has one) is worse than 50 m or the implied speed is over
+// 150 km/h (GPS jump). Two agreeing jumps in a row = really moved: the trail restarts there.
+const TR={WIN:300000,LEN:300,CAP:60,STEP:15,ACC:50,VMAX:150/3.6,A0:.2,A1:.9};fam.trails={};
+function trClear(id){(id?[id]:Object.keys(fam.trails)).forEach(k=>{const r=fam.trails[k];if(r&&r.lg)r.lg.remove();delete fam.trails[k]})}
+function trAdd(r,q){if(q.acc!=null&&!(q.acc<=TR.ACC))return 'acc';
+ const k=r.pts[r.pts.length-1];if(!k){r.pts.push(q);r.near=[q];return 'first'}
+ const step=Math.max(TR.STEP,q.acc||0),d=distM(k,q),sp=d/Math.max(1000,q.t-k.t)*1000;
+ if(sp>TR.VMAX){const p=r.pend;r.pend=q;
+  if(p&&distM(p,q)/Math.max(1000,q.t-p.t)*1000<=TR.VMAX){r.pts=[p];r.near=[p];r.pend=null;return trAdd(r,q)}return 'jump'}
+ r.pend=null;const n=r.near,c={lat:n.reduce((a,x)=>a+x.lat,0)/n.length,lng:n.reduce((a,x)=>a+x.lng,0)/n.length};
+ if(d<step||distM(c,q)<step){n.push(q);if(n.length>20)n.shift();return 'still'}
+ r.pts.push(q);r.near=[q];return 'kept'}
+function trTrim(r,now){const P=r.pts;if(P.length>TR.CAP)P.splice(0,P.length-TR.CAP);let i=P.length-1,cum=0;
+ while(i>0){const d=distM(P[i],P[i-1]);if(cum+d>TR.LEN||now-P[i-1].t>TR.WIN)break;cum+=d;i--}if(i>0)P.splice(0,i)}
+function trUpdate(){if(!fam.code){trClear();return}const now=Date.now()+(fam.off||0),live={};
+ (fam.list||[]).forEach(p=>{live[p.id]=1;if(isOld(p)){trClear(p.id);return} // grey last-seen pin: no trail
+  const rec=(fam.people||{})[p.id]||{},r=fam.trails[p.id]||(fam.trails[p.id]={pts:[],near:[],pend:null,key:'',lg:null,sig:''}),key=p.lat+','+p.lng+','+(rec.t||'');
+  if(key!==r.key){r.key=key;const a=typeof rec.acc==='number'?rec.acc:typeof rec.accuracy==='number'?rec.accuracy:null;r.last=trAdd(r,{lat:p.lat,lng:p.lng,t:+rec.t||now,acc:a})}
+  trTrim(r,now);trDraw(r,p)});
+ Object.keys(fam.trails).forEach(id=>{if(!live[id])trClear(id)})} // stopped sharing / record gone / hidden duplicate
+function trDraw(r,p){const show=!!(fam.map&&window.L&&!fam.stale),c=GRAD[p.color]?GRAD[p.color][0]:p.color, // gradient pin: its first colour
+  P=r.pts.filter(x=>distM(x,p)>=TR.STEP), // spots within 15 m of the pin sit under it: not drawn (standing still = no dots)
+  sig=show?c+'|'+P.map(x=>x.t+':'+x.lat+':'+x.lng).join(','):'';
+ if(sig===r.sig)return;r.sig=sig;if(r.lg)r.lg.clearLayers();if(!show||!P.length)return; // only this person's trail is redrawn
+ if(!fam.map.getPane('trail')){const pn=fam.map.createPane('trail');pn.style.zIndex=350;pn.style.pointerEvents='none'} // under every pin and the blue 'me' dot; never takes taps
+ if(!r.lg)r.lg=L.layerGroup().addTo(fam.map);const n=P.length,ic=L.divIcon({className:'',html:`<div class="trd" style="background:${c}"></div>`,iconSize:[6,6],iconAnchor:[3,3]});
+ P.forEach((x,i)=>r.lg.addLayer(L.marker([x.lat,x.lng],{pane:'trail',icon:ic,interactive:false,keyboard:false,opacity:n>1?TR.A0+(TR.A1-TR.A0)*i/(n-1):TR.A1})))}
+function openSheet(ids){fam.sheet=ids;fam.sheetHtml=null;renderSheet();if(fam.sheet){$('sheetBg').hidden=false;$('sheet').hidden=false}}
+function closeSheet(){fam.sheet=null;fam.sheetHtml=null;$('sheet').hidden=true;$('sheetBg').hidden=true;$('sheetBody').innerHTML=''}
+function renderSheet(){const me=LS.get('fam-id'),ps=(fam.sheet||[]).map(id=>(fam.list||[]).find(p=>p.id===id)).filter(Boolean);
+ if(!ps.length){closeSheet();return}
+ const head=p=>`<div class="sh-h"><i class="tg big" style="background:${dotC(p)}">${e(lab(p))}</i><div><div class="sh-n">${e(p.name)}${p.id===me?' (you)':''}</div><div class="note" style="margin:0">${isOld(p)?seen(p.age):'updated '+ago(p.age)}</div></div></div>`;
+ let h;if(ps.length>1)h=`<div class="lab">${ps.length} people here</div>`+ps.map(p=>`<button class="sh-row" data-id="${e(p.id)}">${head(p)}</button>`).join('');
+ else{const p=ps[0];h=head(p);if(p.id!==me){const W=walkLinks(p);h+=`<div class="navwrap"><a class="big walk" href="${W.ios}" data-and="${W.and}" data-web="${W.web}" onclick="return amap(this)">Walk there in Amap</a></div>`}}
+ if(h===fam.sheetHtml)return; // unchanged: keep any "Open Amap website" link in place
+ fam.sheetHtml=h;$('sheetBody').innerHTML=h;$('sheetBody').querySelectorAll('.sh-row').forEach(b=>b.onclick=()=>openSheet([b.dataset.id]))}
+$('sheetBg').onclick=closeSheet;addEventListener('keydown',ev=>{if(ev.key==='Escape'&&fam.sheet)closeSheet()});
+(()=>{const s=$('sheet');let y0=null,dy=0;s.addEventListener('touchstart',ev=>{y0=ev.touches[0].clientY;dy=0},{passive:true});
+ s.addEventListener('touchmove',ev=>{if(y0==null)return;dy=ev.touches[0].clientY-y0;if(dy>0)s.style.transform=`translateY(${dy}px)`},{passive:true});
+ s.addEventListener('touchend',()=>{s.style.transform='';if(dy>70)closeSheet();y0=null;dy=0})})();
+setInterval(()=>{if(isMap())drawPeople()},30000);
+const mineThere=()=>{const id=fam.id||LS.get('fam-id');return !!(id&&fam.people&&fam.people[id])};
+function shareUI(){if(!$('shareBtn'))return;const on=!!fam.sharing;$('setup').hidden=on;$('shareWrap').hidden=on;$('sbar').hidden=!on;$('fabOn').hidden=!on;
+ $('clearBtn').hidden=on||!mineThere()}
+$('nameIn').addEventListener('change',ev=>{const v=ev.target.value.trim().slice(0,20);if(v)LS.set('fam-name',v);colUI()});$('nameIn').addEventListener('input',colUI);
+$('shareBtn').onclick=()=>{const name=$('nameIn').value.trim().slice(0,20);if(!name){msg('Type your name first.');$('nameIn').focus();return}LS.set('fam-name',name);
+ if(!navigator.geolocation){msg("This phone can't share location here.");return}
+ if(!fam.db){msg("Can't reach the family map yet. Try again in a moment.");return}
+ LS.set('fam-color',myColor());swOpen(false);colUI(); // the default becomes this phone's colour
+ const D=fam.D;fam.me=D.ref(fam.db,`trips/${fam.code}/people/${myId()}`); // nothing removed on disconnect: the last spot stays (greyed) for 60 min
+ fam.sharing=true;fam.lastW=null;shareUI();msg('Finding you…');
+ fam.watch=navigator.geolocation.watchPosition(onPos,onGeoErr,{enableHighAccuracy:true,maximumAge:10000,timeout:60000});
+ fam.keep=setInterval(()=>{if(fam.last)writePos(fam.last)},45000)};
+function onPos(p){const c={lat:+p.coords.latitude.toFixed(6),lng:+p.coords.longitude.toFixed(6)};fam.last=c;
+ if(!fam.lastW||Date.now()-fam.lastW.at>=30000||distM(fam.lastW,c)>25)writePos(c)}
+function onGeoErr(err){if(err.code===1){msg('Location is turned off for this browser. Allow it in Settings, then tap Share again.');stopShare()}else msg('Still looking for your location…')}
+function writePos(c){if(!fam.sharing||document.hidden)return;fam.lastW={...c,at:Date.now()};
+ fam.D.set(fam.me,{name:LS.get('fam-name')||'?',color:myColor(),lat:c.lat,lng:c.lng,t:fam.D.serverTimestamp()})
+  .then(()=>msg('Sharing · sent '+new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})))
+  .catch(er=>msg(/permission/i.test(String(er&&(er.code||er.message)||er))?"The family map didn't accept your location.":"Couldn't send. Will retry."))}
+// Stop (and Forget) delete this phone's entry at once, including a last spot left from an earlier visit.
+function stopShare(){if(fam.watch!=null)navigator.geolocation.clearWatch(fam.watch);fam.watch=null;clearInterval(fam.keep);const id=fam.id||LS.get('fam-id');
+ if(fam.D&&fam.db&&fam.code&&id&&(fam.sharing||mineThere())){fam.D.remove(fam.D.ref(fam.db,`trips/${fam.code}/people/${id}`)).catch(()=>{});if(fam.people)delete fam.people[id]}
+ fam.sharing=false;fam.last=null;if($('shareBtn')){shareUI();drawPeople()}msg('')}
+// ---- ?demo=trail only: in-page mock database + fake people (never runs without the flag) ----
+function demoDB(){const Q=new URLSearchParams(location.search),X=Math.min(30,Math.max(1,+Q.get('x')||6)),T0=Date.now(),now=()=>T0+(Date.now()-T0)*X; // demo clock runs X times faster
+ const st={},ls=[];let offCb=null;const snap=()=>({val:()=>Object.keys(st).length?JSON.parse(JSON.stringify(st)):null}),tell=()=>ls.slice().forEach(f=>f(snap()));
+ const M={getDatabase:()=>({}),ref:(d,path)=>({path}),serverTimestamp:()=>({'.sv':'timestamp'}),
+  onValue(r,cb){if(r.path==='.info/connected'){setTimeout(()=>cb({val:()=>true}),30);return()=>{}}
+   if(r.path==='.info/serverTimeOffset'){offCb=cb;cb({val:()=>now()-Date.now()});return()=>{offCb=null}}
+   ls.push(cb);setTimeout(()=>cb(snap()),30);return()=>{const i=ls.indexOf(cb);if(i>=0)ls.splice(i,1)}},
+  set(r,v){st[r.path.split('/').pop()]={...v,t:v.t&&v.t['.sv']?now():v.t};tell();return Promise.resolve()},
+  remove(r){delete st[r.path.split('/').pop()];tell();return Promise.resolve()}};
+ const m2d=(o,dn,de)=>({lat:o[0]+dn/111320,lng:o[1]+de/(111320*Math.cos(o[0]*Math.PI/180))}),r6=v=>+v.toFixed(6);
+ // who: id, name, colour, route(s seconds) -> {lat,lng}
+ const W=[39.9182,116.4106],C=[39.9077,116.3990],H=[39.9160,116.4030],S=[39.9105,116.4183],kmh=v=>v/3.6;
+ const P=[{id:'dMia',name:'Mia (walk)',color:'g5',at:s=>m2d(W,-kmh(5)*s,0),jump:180},
+  {id:'dLeo',name:'Leo (taxi)',color:'#FFEA00',at:s=>{const L=2600,x=(kmh(40)*s)%(2*L);return m2d(C,0,x<L?x:2*L-x)}},
+  {id:'dGran',name:'Gran (still)',color:'#2962FF',at:()=>{const a=Math.random()*2*Math.PI,d=5*Math.sqrt(Math.random());return m2d(H,d*Math.cos(a),d*Math.sin(a))}},
+  {id:'dSam',name:'Sam (stops)',color:'#76FF03',at:s=>m2d(S,kmh(5)*s,0),quiet:[300,540],gone:[540,600]}];
+ const LOOP=720,w={};
+ function tick(){const t=now(),s=((t-T0)/1000)%LOOP;if(offCb)offCb({val:()=>now()-Date.now()});
+  P.forEach(p=>{if(p.gone&&s>=p.gone[0]&&s<p.gone[1]){if(st[p.id]){delete st[p.id];w[p.id]=null}return} // stopped sharing
+   if(p.quiet&&s>=p.quiet[0]&&s<p.quiet[1])return; // phone locked: no writes -> pin goes grey after 2 min
+   let c=p.at(s);if(p.jump&&Math.abs(s-p.jump)<1)c=m2d([c.lat,c.lng],0,700); // one GPS glitch, 700 m east
+   const l=w[p.id];if(l&&s>=l.s&&t-l.t<30000&&distM(l,c)<=25)return; // same rule as the app: write after 25 m or 30 s
+   w[p.id]={lat:c.lat,lng:c.lng,t,s};st[p.id]={name:p.name,color:p.color,lat:r6(c.lat),lng:r6(c.lng),t}});tell()}
+ setInterval(tick,250);setTimeout(tick,60);return M}
+if(TRAILTEST){const mk=t=>{const b=document.createElement(t);b.className='ttb';b.textContent='TEST, trail preview';return b};document.querySelector('main').prepend(mk('div'));$('fmap').appendChild(mk('span'))}
+if(DEMO){const b=document.createElement('div');b.className='amber';b.style.cssText='background:#111;color:#fff';b.textContent='DEMO · fake people, sped up · nothing is shared or saved';
+ $('famAmber').before(b);addEventListener('load',()=>openMap(false))}
+if(!DEMO)checkCode(LS.get('fam-k'));
+$('stopBtn').onclick=()=>{stopShare();msg('Stopped. Nobody can see you now.')};
+$('clearBtn').onclick=()=>{stopShare();msg('Removed. Nobody can see you now.')};
+$('forgetBtn').onclick=()=>{stopShare();unsubAll();['fam-k','fam-name','fam-id','fam-color'].forEach(LS.del);fam.id=null;fam.code=null;fam.people={};trClear();fam.fitted=false;$('nameIn').value='';drawPeople();
+ if(STANDALONE){$('famMain').hidden=true;$('famCode').hidden=false}else refreshTabs()};
+</script></body></html>
